@@ -1,3 +1,4 @@
 *.zip
-/R3D901/Program/OBJ/
-!/R3D901/Program/OBJ/D3R901.hex
+*.o
+*.crf
+*.d
