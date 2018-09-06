@@ -10,7 +10,7 @@
 
 /****************************************************************************************************************/
 
-void ENC_Init2(void)//电机A码盘采集定时器，TIM3编码器模式
+void ENC_Init_Right(void)//电机A码盘采集定时器，TIM3编码器模式
 {
 	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
 	TIM_ICInitTypeDef TIM_ICInitStructure;
@@ -58,7 +58,7 @@ void ENC_Init2(void)//电机A码盘采集定时器，TIM3编码器模式
     
 }
 
-void ENC_Init1(void)//电机B码盘采集定时器，TIM4编码器模式
+void ENC_Init_Left(void)//电机B码盘采集定时器，TIM4编码器模式
 {
   TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
 	TIM_ICInitTypeDef TIM_ICInitStructure;    
@@ -81,7 +81,7 @@ void ENC_Init1(void)//电机B码盘采集定时器，TIM4编码器模式
 //	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_DOWN; //下拉
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
 	
-	TIM_DeInit(ENCODER2_TIMER);
+	TIM_DeInit(ENCODER_RIGHT_TIMER);
 	TIM_TimeBaseStructInit(&TIM_TimeBaseStructure);
 
 	TIM_TimeBaseStructure.TIM_Prescaler = 0;  
@@ -89,27 +89,20 @@ void ENC_Init1(void)//电机B码盘采集定时器，TIM4编码器模式
 
 	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;   
-	TIM_TimeBaseInit(ENCODER2_TIMER, &TIM_TimeBaseStructure);
+	TIM_TimeBaseInit(ENCODER_RIGHT_TIMER, &TIM_TimeBaseStructure);
 
-	TIM_EncoderInterfaceConfig(ENCODER2_TIMER, TIM_EncoderMode_TI12, TIM_ICPolarity_Rising, TIM_ICPolarity_Rising);
+	TIM_EncoderInterfaceConfig(ENCODER_RIGHT_TIMER, TIM_EncoderMode_TI12, TIM_ICPolarity_Rising, TIM_ICPolarity_Rising);
 	TIM_ICStructInit(&TIM_ICInitStructure);
 	TIM_ICInitStructure.TIM_ICFilter = ICx_FILTER;
-	TIM_ICInit(ENCODER2_TIMER, &TIM_ICInitStructure);
+	TIM_ICInit(ENCODER_RIGHT_TIMER, &TIM_ICInitStructure);
 
-	TIM_ClearFlag(ENCODER2_TIMER, TIM_FLAG_Update);//清除TIM4的更新标志位
-	TIM_ITConfig(ENCODER2_TIMER, TIM_IT_Update, DISABLE);//运行更新中断 
+	TIM_ClearFlag(ENCODER_RIGHT_TIMER, TIM_FLAG_Update);//清除TIM4的更新标志位
+	TIM_ITConfig(ENCODER_RIGHT_TIMER, TIM_IT_Update, DISABLE);//运行更新中断 
 	
 	TIM4->CNT = 32768;
 
-	TIM_Cmd(ENCODER2_TIMER, ENABLE); 
+	TIM_Cmd(ENCODER_RIGHT_TIMER, ENABLE); 
 }
 
-/*******************************************************/
-
-void ENC_Init(void)//电机处理初始化
-{
-    ENC_Init2();              //设置电机A TIM3编码器模式PC6 PC7 右电机
-		ENC_Init1();              //设置电机D TIM4编码器模式PB6 PB7 左电机 
-}
 
 

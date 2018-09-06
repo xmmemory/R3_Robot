@@ -18,19 +18,18 @@ void Odom_Calculator(void *p_tmr, void *p_arg); 	//定时器2---里程计odom计算函数-
 void PVD_Config(void);														//低电压中断初始化
 void Stop_Moving(void);													//紧急停止子程序
 u8 uart1_format_build_and_send(u8 *arg,u8 device_id,u8 commond_id,u8 length);		//串口1数据整理及发送函数
+void Robot_Moving(float L_speed,float R_speed,u8 time);					//机器人移动
 /*
 *********************************************************************************************************
 *                                               DEFINES
 *********************************************************************************************************
 */
-#define GNUC_PACKED __attribute__((packed))
+#define GNUC_PACKED __attribute__((packed))f
 
 #define TASK_Q_NUM	3							//发任务内建消息队列的长度
 #define SPEED_TRANSFORM_Q_NUM	2		//速度下发任务内建消息队列的长度---2
 #define UART1_SEND_Q_NUM	3				//串口1发任务内建消息队列的长度---3
-//#define UART23_SEND_Q_NUM	1				//串口2、3发任务内建消息队列的长度---1
 #define UART1_ANALYZE_Q_NUM	2			//串口1数据解析内建消息队列的长度---2
-#define UART4_RECIVE_Q_NUM	2			//串口4数据解析内建消息队列的长度---2
 #define SPEED_TRANSFORM_TIMEOUT 200u	//n*5ms的等待时长--1s
 #define SENSOR_POST_TIMEOUT     2000u	//n*5ms的等待时长--10s
 
@@ -65,8 +64,8 @@ OS_TMR	battery_status_tmr1;				//定义一个定时器
 OS_SEM	MY_SEM;											//定义一个信号量，用于控制ODOM的计算
 OS_TMR	Odom_Calculator_tmr2;				//定时器2---里程计pwm捕获回调函数---10ms--100hz
 
-u32 odom_rate_seconds = 100;	//odom上传间隔、100ms 
-u8 Control_Authority = 1;				//控制权限切换——1为本地控制、0为外部控制
+u32 odom_rate_seconds = 100;				//odom上传间隔、100ms 
+u8 Control_Authority = 0;						//控制权限切换——1为本地控制、0为外部控制|0000 0000|---|0000 00 锁定使能 权限控制|
 /*******************************************UNION VARIABLES**************************************************************/
 union recieveData							//接收到的数据
 {
@@ -139,7 +138,18 @@ CPU_STK	MSGDIS_TASK_STK[MSGDIS_STK_SIZE];
 void msgdis_task(void *p_arg);
 
 //任务优先级
-#define SPEED_TRANSFORM_TASK_PRIO   10
+#define ODOM_SEND_TASK_PRIO   10
+//任务堆栈
+#define ODOM_SEND_STK_SIZE		128
+//任务控制块
+OS_TCB	ODOM_SEND_TaskTCB;
+//任务堆栈
+CPU_STK	ODOM_SEND_TASK_STK[ODOM_SEND_STK_SIZE];
+//任务函数
+void odom_send_task(void *p_arg);
+
+//任务优先级
+#define SPEED_TRANSFORM_TASK_PRIO   11
 //任务堆栈
 #define SPEED_TRANSFORM_STK_SIZE		128
 //任务控制块
@@ -161,29 +171,7 @@ CPU_STK	UART1_ANALYZE_TASK_STK[UART1_ANALYZE_STK_SIZE];
 void uart1_analyze_task(void *p_arg);
 
 //任务优先级
-#define ODOM_SEND_TASK_PRIO   13
-//任务堆栈
-#define ODOM_SEND_STK_SIZE		128
-//任务控制块
-OS_TCB	ODOM_SEND_TaskTCB;
-//任务堆栈
-CPU_STK	ODOM_SEND_TASK_STK[ODOM_SEND_STK_SIZE];
-//任务函数
-void odom_send_task(void *p_arg);
-
-//任务优先级
-#define SENSOR_SEND_TASK_PRIO   15
-//任务堆栈
-#define SENSOR_SEND_STK_SIZE		128
-//任务控制块
-OS_TCB	SENSOR_SEND_TaskTCB;
-//任务堆栈
-CPU_STK	SENSOR_SEND_TASK_STK[SENSOR_SEND_STK_SIZE];
-//任务函数
-void sensor_send_task(void *p_arg);
-
-//任务优先级
-#define DOOR_OPEN_TASK_PRIO   16
+#define DOOR_OPEN_TASK_PRIO   14
 //任务堆栈
 #define DOOR_OPEN_STK_SIZE		128
 //任务控制块
@@ -194,7 +182,7 @@ CPU_STK	DOOR_OPEN_TASK_STK[DOOR_OPEN_STK_SIZE];
 void door_open_task(void *p_arg);
 
 //任务优先级
-#define BATTERY_SEND_TASK_PRIO   17
+#define BATTERY_SEND_TASK_PRIO   15
 //任务堆栈
 #define BATTERY_SEND_STK_SIZE		128
 //任务控制块
@@ -205,7 +193,7 @@ CPU_STK	BATTERY_SEND_TASK_STK[BATTERY_SEND_STK_SIZE];
 void battery_send_task(void *p_arg);
 
 //任务优先级
-#define REMOTE_CONTROL_TASK_PRIO   18
+#define REMOTE_CONTROL_TASK_PRIO   16
 //任务堆栈
 #define REMOTE_CONTROL_STK_SIZE		128
 //任务控制块
@@ -230,7 +218,10 @@ int main(void)
 	BEEP_Init();					//初始化蜂鸣器
 	Adc_Init();         	//初始化ADC
 	CAN1_Mode_Init(CAN_SJW_1tq,CAN_BS2_6tq,CAN_BS1_7tq,6,CAN_Mode_Normal);//CAN初始化普通模式,波特率500Kbps    
-	ENC_Init();           //编码器处理初始化
+	
+	ENC_Init_Left();					//设置电机D TIM4编码器模式PB6 PB7 左电机 
+	ENC_Init_Right();					//设置电机A TIM3编码器模式PC6 PC7 右电机
+	
 	PVD_Config();					//低电压中断初始化
 	
 	MYDMA_Config(DMA2_Stream7,DMA_Channel_4,(u32)&USART1->DR,(u32)SendBuff,SEND_BUF_SIZE);//DMA2,STEAM7,CH4,外设为串口1,存储器为SendBuff,长度为:SEND_BUF_SIZE.
@@ -347,20 +338,6 @@ void start_task(void *p_arg)
 								 (void   	* )0,					
 								 (OS_OPT      )OS_OPT_TASK_STK_CHK|OS_OPT_TASK_STK_CLR,
 								 (OS_ERR 	* )&err);
-	//创建Sensor_Send任务
-	OSTaskCreate((OS_TCB 	* )&SENSOR_SEND_TaskTCB,	
-								 (CPU_CHAR	* )"sensor send task", 		
-								 (OS_TASK_PTR )sensor_send_task, 			
-								 (void		* )0,
-								 (OS_PRIO	  )SENSOR_SEND_TASK_PRIO,     
-								 (CPU_STK   * )&SENSOR_SEND_TASK_STK[0],	
-								 (CPU_STK_SIZE)SENSOR_SEND_STK_SIZE/10,	
-								 (CPU_STK_SIZE)SENSOR_SEND_STK_SIZE,		
-								 (OS_MSG_QTY  )UART4_RECIVE_Q_NUM,		//UART4_RECIVE_Q_NUM=2
-								 (OS_TICK	  )0,  					
-								 (void   	* )0,					
-								 (OS_OPT      )OS_OPT_TASK_STK_CHK|OS_OPT_TASK_STK_CLR,
-								 (OS_ERR 	* )&err);
 	//创建ODOM_SEND任务
 	OSTaskCreate((OS_TCB 	* )&ODOM_SEND_TaskTCB,	
 								 (CPU_CHAR	* )"odom send task", 		
@@ -444,8 +421,7 @@ void start_task(void *p_arg)
 //								 (OS_TICK	  )0,  					
 //								 (void   	* )0,					
 //								 (OS_OPT      )OS_OPT_TASK_STK_CHK|OS_OPT_TASK_STK_CLR,
-//								 (OS_ERR 	* )&err);	
-								 
+//								 (OS_ERR 	* )&err);									 
 	OSTmrStart(&battery_status_tmr1,&err);			//启动定时器1						 								 
 	OSTmrStart(&Odom_Calculator_tmr2,&err);			//启动定时器2
 	//退出临界区						 
@@ -464,13 +440,22 @@ void start_task(void *p_arg)
 void tmr1_callback(void *p_tmr,void *p_arg)
 {
 //	OS_ERR err;		
-	u8 arry[1] = {0x01};
+	u8 arry[1] = {0x01};	
+	
 	if(Battery_Status)
 	{
 		Stop_Moving();
-//		Control_Authority = 1;		//切换为本地控制
-		uart1_format_build_and_send(arry,0x01,0x03,0x01);		//发送数据到串口---id = 0x01,commond = 0x02;
+		Control_Authority = 1;		//切换为本地控制
+//		GPIO_SetBits(GPIOF,GPIO_Pin_8);   //BEEP引脚拉高， 等同BEEP=1;
+				
+		uart1_format_build_and_send(arry,0x01,0x03,0x01);		//发送数据到串口---id = 0x01,commond = 0x02;		
 	}
+	else
+	{
+//		GPIO_ResetBits(GPIOF,GPIO_Pin_8); //BEEP引脚拉低， 等同BEEP=0;
+		Control_Authority = 0;		//切换为上位机控制
+	}
+
 //	OSTmrStop(&battery_status_tmr1,OS_OPT_TMR_NONE,0,&err); //停止定时器1
 }
 
@@ -485,12 +470,13 @@ void tmr1_callback(void *p_tmr,void *p_arg)
 //定时器2---里程计计算---回调函数
 void Odom_Calculator(void *p_tmr, void *p_arg)
 {
-	PULSE_RIGHT = ENCODER_RIGHT_TIMER->CNT - 32768;	//B 获取的编码数
-	ENCODER_RIGHT_TIMER->CNT = 32768;
-	PULSE_LEFT = ENCODER_LEFT_TIMER->CNT - 32768;	//A 获取的编码数
+	PULSE_LEFT = ENCODER_LEFT_TIMER->CNT - 32768;	//左电机码盘采集定时器 TIM3---TIM3编码器模式GPIOB6 GPIOB7 左电机
 	ENCODER_LEFT_TIMER->CNT = 32768;
+	PULSE_RIGHT = ENCODER_RIGHT_TIMER->CNT - 32768;	//右电机码盘采集定时器 TIM4---TIM4编码器模式GPIOC6 GPIOC7 右电机
+	ENCODER_RIGHT_TIMER->CNT = 32768;
+	
 	//计算里程计
-	odometry_cal(PULSE_RIGHT,PULSE_LEFT);
+	odometry_cal(PULSE_LEFT,PULSE_RIGHT);
 }
 
 /*
@@ -523,10 +509,10 @@ u8 uart1_format_build_and_send(u8 *arg,u8 device_id,u8 commond_id,u8 length)
 		for(u8 j=0;j<length;j++)
 		{
 			SendBuff[j+5]=*(arg+j);
-		}
+		}		
 		//Check_Sum_Cal
-		for(u8 check_count = 0;check_count < length;check_count++)
-		check_sum = SendBuff[check_count];
+		for(u8 check_count = 0;check_count < length+5;check_count++)
+		check_sum += SendBuff[check_count];		
 		//Check_Sum
 		SendBuff[((length++)+5)] = (check_sum >> 8);
 		SendBuff[((length++)+5)] = check_sum;
@@ -536,12 +522,12 @@ u8 uart1_format_build_and_send(u8 *arg,u8 device_id,u8 commond_id,u8 length)
 		SendBuff[((length++)+5)]='Y';//添加结束符
 		SendBuff[((length++)+5)]='H';//添加结束符
 		SendBuff[((length++)+5)]='T';//添加结束符
-	
-		DMA_ClearFlag(DMA2_Stream7,DMA_FLAG_TCIF7);//清除DMA2_Steam7传输完成标志
+		//DMA_Send
+		DMA_ClearFlag(DMA2_Stream7,DMA_FLAG_TCIF7);		//清除DMA2_Steam7传输完成标志
 		USART_DMACmd(USART1,USART_DMAReq_Tx,ENABLE);  //使能串口1的DMA发送     
-		MYDMA_Enable(DMA2_Stream7,(length+5));     //开始一次DMA传输！	  
-		
-		return 0;		//发送成功
+		MYDMA_Enable(DMA2_Stream7,(length+5));     		//开始一次DMA传输！	  
+		//发送成功
+		return 0;		
 	}	
 	else
 		return 2;
@@ -664,17 +650,15 @@ void uart1_analyze_task(void *p_arg)
 							Stop_Moving();
 						}
 						//上位机请求控制权	
-						else if(*(p+5) == 0x03)
+						else if(*(p+5) == 0x03)					//充电脱离指令
 						{
-							//控制权移交
-							Control_Authority = 0;		//切换为上位机控制
+							Robot_Moving(100.00,100.00,50);		//机器人向前弹出一段距离
 						}
-						else if(*(p+5) == 0x04)
+						else if(*(p+5) == 0x04)					//允许控制权限切换
 						{
-							//控制权移交
-							Control_Authority = 1;		//切换为本地控制
+//							Control_Authority |= 0x02;		
 						}
-						else if(*(p+5) == 0xF1)
+						else if(*(p+5) == 0xF1)					//驱动器清障指令
 						{
 							//MOTOR_CLEAR_FAULT
 							CAN1_Send_Msg(CAN_ID1,MOTOR_CLEAR_FAULT,8);//发送8个字节
@@ -693,11 +677,14 @@ void uart1_analyze_task(void *p_arg)
 						{							
 							case 0x01:	//两轮速度写入---指令地址0x01
 							{
-								OSTaskQPost((OS_TCB*)&SPEED_TRANSFORM_TaskTCB,	//向任务SPEED_TRANSFORM发送消息
-											(void*		)(p+6),
-											(OS_MSG_SIZE)8,
-											(OS_OPT		)OS_OPT_POST_FIFO,
-											(OS_ERR*	)&err);							
+								if((Control_Authority&0x01) == 0)		//确认上位机是否有控制权限&&Moving状态
+								{
+									OSTaskQPost((OS_TCB*)&SPEED_TRANSFORM_TaskTCB,	//向任务SPEED_TRANSFORM发送消息
+												(void*		)(p+6),
+												(OS_MSG_SIZE)8,
+												(OS_OPT		)OS_OPT_POST_FIFO,
+												(OS_ERR*	)&err);
+								}
 							}break;
 							case 0x02:
 								break;
@@ -851,38 +838,6 @@ void battery_send_task(void *p_arg)
 		/**********退出临界区*********/		
 		OSTimeDlyHMSM(0,0,10,0,OS_OPT_TIME_PERIODIC,&err);   //延时10s--0.1Hz
 	}
-}
-/*
-************************************************************************************************************************
-*                                                   sensor_post_task
-* Description: 传感器数据推送程序;
-* Arguments  : NULL;
-* Note(s)    : SENSOR_POST_TIMEOUT---延时后、显示接收到的消息-可用来判断哪个传感器出现故障;
-************************************************************************************************************************
-*/
-void sensor_send_task(void *p_arg)
-{
-	u8 *p;
-	OS_MSG_SIZE size;
-	OS_ERR err; 
-	while(1)
-	{
-		//申请内存
-		p = mymalloc(SRAMIN,50);
-		//请求消息
-		p=OSTaskQPend((OS_TICK		)0,		//n*5ms的超时等待时长
-                      (OS_OPT		)OS_OPT_PEND_BLOCKING,	//阻塞任务
-                      (OS_MSG_SIZE*	)&size,		//获取的字节长度
-                      (CPU_TS*		)0,	//时间戳、NULL--表示不记录
-                      (OS_ERR*      )&err );		//保存错误码				
-		/**********进入临界区**********/
-		CPU_SR_ALLOC();
-		OS_CRITICAL_ENTER();		
-		uart1_format_build_and_send(p,0x02,0x01,size-5);		//发送数据到串口---id = 0x02,commond = 0x01;
-		OS_CRITICAL_EXIT();
-		/**********退出临界区*********/
-		OSTimeDlyHMSM(0,0,1,0,OS_OPT_TIME_PERIODIC,&err); //延时1000ms
-	}	
 }
 /************************************************************************** 
 * Function Name  : remote_control_task  
@@ -1056,6 +1011,42 @@ u8 Format_Check(u8 *p_arg,u8 length)
 		return 0;		//校验通过返回-0;
 }
 
+/*
+************************************************************************************************************************
+*                                                   Format_Check
+*
+* Description: 接收n个字节,并进行数据校验;
+*
+* Arguments  : u8 *p_arg---数据指针,u8 length--数据长度
+*
+* Note(s)    : 1) 校验通过返回-0;
+*				       2) 数据头错误返回-1;
+*				       3) 数据尾错误返回-2;
+*				       4) 长度错误返回-3;
+*				       4) 累计和错误返回-4;
+************************************************************************************************************************
+
+u8 Format_Check(u8 *p_arg,u8 length)
+{
+	u16 check_sum= 0;
+	for(int i=0;i<(length-4);i++)
+	{
+		check_sum += *(p_arg+i);
+	}
+	if((*p_arg != 0xA6) || (*(p_arg+1) != 0x59))
+		return 1;		//数据头错误返回-1;
+	else if((*(p_arg+length-5) != 0x0D) || (*(p_arg+length-4) != 0x0A) || *(p_arg+length-3) != 0x59) || (*(p_arg+length-2) != 0x48) || *(p_arg+length-1) != 0x54))
+		return 2;		//数据尾错误返回-2;
+	else if(*(p_arg+2) != length)
+		return 3;		//长度错误返回-3;
+	else if((*(p_arg+length-3) != check_sum) && (*(p_arg+length-4) != (check_sum >> 8)))
+		return 4;		//累加和错误返回-4;
+	else if(*(p_arg+3) != 0x01)
+		return 5;		//指令不是发送给底盘控制器的返回-5;
+	else
+		return 0;		//校验通过返回-0;
+}
+*/
 void Stop_Moving(void)
 {
 	//MOTOR_RESET_SPEED
@@ -1063,5 +1054,44 @@ void Stop_Moving(void)
 	CAN1_Send_Msg(CAN_ID2,MOTOR_RESET_SPEED_CMD,8);//发送8个字节;
 }	
 
+void Robot_Moving(float L_speed,float R_speed,u8 time)
+{
+	while(time--)
+	{
+		car_control(L_speed,R_speed);	 //将接收到的左右轮速度赋给小车		
+		delay_ms(100);
+	}
+}
+
+//CRC 多项式: CRC-16 x16+x15+x2+1 8005->A001 按位颠倒
+/*******************************************
+* 函数名称: CRC16(uchar *Data , ushort Len )
+* 函数功能: CRC 校验
+* 入口参数: *Data：需要校验的数据
+Len： 需要校验数据的长度
+* 出口参数: 返回校验值
+********************************************/
+u16 CRC16(unsigned char *Data , unsigned short Len )
+{
+	unsigned int DataCRC = 0xffff;
+	unsigned char i;
+	while(Len != 0)
+	{
+		DataCRC = DataCRC^(*Data);
+		for(i=0;i<8;i++)
+		{
+			if((DataCRC & 0x0001) == 0)
+				DataCRC = DataCRC >> 1;
+			else
+			{
+				DataCRC = DataCRC >> 1;
+				DataCRC ^= 0xa001;
+			}
+		}
+		Len -= 1;
+		Data++;
+	}
+	return DataCRC;
+}
 
 

@@ -383,11 +383,10 @@ ARM Macro Assembler    Page 6
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=..\obj\os_cpu_a.d -o..\obj\os_cpu_a.o -ID:\Ray_Git\Ray\Robot\R3
-\R3D901\Program\PROJECT\RTE -IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.9.0\Driv
-ers\CMSIS\Device\ST\STM32F4xx\Include -IC:\Keil_v5\ARM\CMSIS\Include --predefin
-e="__UVISION_VERSION SETA 521" --predefine="STM32F407xx SETA 1" --list=..\obj\o
-s_cpu_a.lst ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView\os_cpu_a.a
-sm
+D901\Program\PROJECT\RTE -IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.9.0\Drivers
+\CMSIS\Device\ST\STM32F4xx\Include -IC:\Keil_v5\ARM\CMSIS\Include --predefine="
+__UVISION_VERSION SETA 521" --predefine="STM32F407xx SETA 1" --list=..\obj\os_c
+pu_a.lst ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView\os_cpu_a.asm
 
 
 

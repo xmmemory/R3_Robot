@@ -232,7 +232,7 @@ u8 uart1_format_build_and_send(u8 *arg,u8 device_id,u8 commond_id,u8 length)
 	}
 	//Check_Sum_Cal
 	for(check_count = 0;check_count < length+5;check_count++)
-	check_sum = SendBuff[check_count];
+	check_sum += SendBuff[check_count];
 	//Check_Sum
 	SendBuff[((length++)+5)] = (check_sum >> 8);
 	SendBuff[((length++)+5)] = check_sum;

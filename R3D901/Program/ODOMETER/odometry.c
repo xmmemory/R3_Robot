@@ -45,7 +45,7 @@ unsigned char once=1;
 /****************************************************************************************************************/
 
 //里程计计算函数
-void odometry_cal(int right,int left)
+void odometry_cal(int left,int right)
 {
 	if((right == 0) && (left == 0))	return;
 	
