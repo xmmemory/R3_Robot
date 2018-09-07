@@ -684,6 +684,7 @@ void uart1_analyze_task(void *p_arg)
 												(OS_MSG_SIZE)8,
 												(OS_OPT		)OS_OPT_POST_FIFO,
 												(OS_ERR*	)&err);
+//									GPIO_SetBits(GPIOF,GPIO_Pin_8);   //BEEP引脚拉高， 等同BEEP=1;
 								}
 							}break;
 							case 0x02:
