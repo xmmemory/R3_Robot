@@ -500,7 +500,7 @@ u8 uart1_format_build_and_send(u8 *arg,u8 device_id,u8 commond_id,u8 length)
 		SendBuff[0] = 0xA6;
 		SendBuff[1] = 0x59;
 		//Length
-		SendBuff[2] = length+2;
+		SendBuff[2] = length+2+2+5+3;
 		//Device ID
 		SendBuff[3] = device_id;
 		//Command ID
@@ -528,7 +528,7 @@ u8 uart1_format_build_and_send(u8 *arg,u8 device_id,u8 commond_id,u8 length)
 		MYDMA_Enable(DMA2_Stream7,(length+5));     		//开始一次DMA传输！	  
 		//发送成功
 		return 0;		
-	}	
+	}	\
 	else
 		return 2;
 }
@@ -652,7 +652,7 @@ void uart1_analyze_task(void *p_arg)
 						//上位机请求控制权	
 						else if(*(p+5) == 0x03)					//充电脱离指令
 						{
-							Robot_Moving(100.00,100.00,50);		//机器人向前弹出一段距离
+							Robot_Moving(100.00,100.00,30);		//机器人向前弹出一段距离
 						}
 						else if(*(p+5) == 0x04)					//允许控制权限切换
 						{
@@ -702,6 +702,8 @@ void uart1_analyze_task(void *p_arg)
 						break;
 				}
 			}
+//			else
+//				GPIO_SetBits(GPIOF,GPIO_Pin_8);   //BEEP引脚拉高， 等同BEEP=1;
 		}
 		//释放内存	
 		myfree(SRAMIN,p);
@@ -989,7 +991,7 @@ void PVD_IRQHandler(void)
 *				       4) 长度错误返回-3;
 *				       4) 累计和错误返回-4;
 ************************************************************************************************************************
-*/   
+  
 u8 Format_Check(u8 *p_arg,u8 length)
 {
 	u16 check_sum= 0;
@@ -1010,6 +1012,7 @@ u8 Format_Check(u8 *p_arg,u8 length)
 	else
 		return 0;		//校验通过返回-0;
 }
+*/
 
 /*
 ************************************************************************************************************************
@@ -1025,40 +1028,81 @@ u8 Format_Check(u8 *p_arg,u8 length)
 *				       4) 长度错误返回-3;
 *				       4) 累计和错误返回-4;
 ************************************************************************************************************************
-
+*/
 u8 Format_Check(u8 *p_arg,u8 length)
 {
 	u16 check_sum= 0;
-	for(int i=0;i<(length-4);i++)
+	for(int i=0;i<(length-7);i++)
 	{
 		check_sum += *(p_arg+i);
 	}
 	if((*p_arg != 0xA6) || (*(p_arg+1) != 0x59))
 		return 1;		//数据头错误返回-1;
-	else if((*(p_arg+length-5) != 0x0D) || (*(p_arg+length-4) != 0x0A) || *(p_arg+length-3) != 0x59) || (*(p_arg+length-2) != 0x48) || *(p_arg+length-1) != 0x54))
+	else if((*(p_arg+length-5) != 0x0D) || (*(p_arg+length-4) != 0x0A) || (*(p_arg+length-3) != 0x59) || (*(p_arg+length-2) != 0x48) || (*(p_arg+length-1) != 0x54))
 		return 2;		//数据尾错误返回-2;
 	else if(*(p_arg+2) != length)
 		return 3;		//长度错误返回-3;
-	else if((*(p_arg+length-3) != check_sum) && (*(p_arg+length-4) != (check_sum >> 8)))
+	else if((*(p_arg+length-6) != check_sum) && (*(p_arg+length-7) != (check_sum >> 8)))
 		return 4;		//累加和错误返回-4;
 	else if(*(p_arg+3) != 0x01)
 		return 5;		//指令不是发送给底盘控制器的返回-5;
 	else
 		return 0;		//校验通过返回-0;
 }
-*/
+
+
+/*
+************************************************************************************************************************
+*                                                   Stop_Moving
+*
+* Description: 驱动器速度归零;
+*
+* Arguments  : NULL
+*
+* Note(s)    : NULL 
+*
+************************************************************************************************************************
+*/   
 void Stop_Moving(void)
 {
 	//MOTOR_RESET_SPEED
 	CAN1_Send_Msg(CAN_ID1,MOTOR_RESET_SPEED_CMD,8);//发送8个字节
 	CAN1_Send_Msg(CAN_ID2,MOTOR_RESET_SPEED_CMD,8);//发送8个字节;
 }	
-
+/*
+************************************************************************************************************************
+*                                                   Robot_Moving
+*
+* Description: 接收n个字节,并进行数据校验;
+*
+* Arguments  : L_speed---左轮速度，R_speed---右轮速度，time---运动时间*100ms
+*
+* Note(s)    :
+*				      
+************************************************************************************************************************
+*/   
 void Robot_Moving(float L_speed,float R_speed,u8 time)
 {
+	u8 p[8],t;
+	OS_ERR err; 
+	
+	rightdata.d = R_speed;
+	leftdata.d = L_speed;
+	
+	for(t=0;t<4;t++)	//将串口接受到的速度存储在结构体中;
+	{
+		*(p+t) = rightdata.data[t];
+		*(p+t+4) = leftdata.data[t];
+	}
+	
 	while(time--)
 	{
-		car_control(L_speed,R_speed);	 //将接收到的左右轮速度赋给小车		
+		OSTaskQPost((OS_TCB*)&SPEED_TRANSFORM_TaskTCB,	//向任务SPEED_TRANSFORM发送消息
+												(void*		)p,
+												(OS_MSG_SIZE)8,
+												(OS_OPT		)OS_OPT_POST_FIFO,
+												(OS_ERR*	)&err);
+//		car_control(L_speed,R_speed);	 //将接收到的左右轮速度赋给小车	
 		delay_ms(100);
 	}
 }
