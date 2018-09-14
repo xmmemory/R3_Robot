@@ -8,8 +8,7 @@ void Init_Tim2_Int(void)
 	
 	TIM_DeInit(TIM2);
 
-//	TIM_TimeBaseStructure.TIM_Period = 1000;	//1000us中断一次
-	TIM_TimeBaseStructure.TIM_Period = 9;	//1000us中断一次
+	TIM_TimeBaseStructure.TIM_Period = 1000;	//1000us中断一次
 	
 	TIM_TimeBaseStructure.TIM_Prescaler=72;//72分频
 	 

@@ -1,48 +1,34 @@
 #include "sys.h"
 #include "delay.h"
 #include "usart.h"
-#include "TIM5_INT.h"
+//#include "TIM5_INT.h"
 #include "stm32f10x_it.h"
 #include "NVIC_CONFIG.h"
 #include "math.h"
 #include "dog.h"
 #include "led.h"
 #include "string.h"
+#include "timer.h"
 
 #define SEND_BUF_SIZE 256	//发送数据长度,最好等于sizeof(TEXT_TO_SEND)+2的整数倍.
 u8 SendBuff[SEND_BUF_SIZE];	//发送数据缓冲区
 
+/*******************************************************/
 u8 uart1_format_build_and_send(u8 *arg,u8 device_id,u8 commond_id,u8 length);
-
 u8 wait_if_sta(u8 pose,u16 sustained_time,u16 wait_time,u8 sta);
-
 u8 recive_bit(u8 pose);
-
+/*******************************************************/
+u8 Send_Ask = 1;
 u8 temp=0;
-
-/*******************************************UNION VARIABLES**************************************************************/
-union recieveData							//接收到的数据
-{
-	float d;
-	unsigned char data[4];
-}humidity,temperature,air_velocity,air_quality,voice,h2_value,pm1_0,pm2_5,pm10;					//接收的传感器数据
-
-//static u8 PM_INIT[] 		= 	{0x42, 0x4d, 0xe4, 0x00, 0x00, 0x01, 0x73};
-//static u8 PM_GET[] 			= 	{0x42, 0x4d, 0xe2, 0x00, 0x00, 0x01, 0x71};
-/************************************************************************************************************************/
-
+/*******************************************************/
 int main()
 {
-	//u16 time_ms100=0,time_ms150=0,time_ms200=0,time_ms250=0,time_ms300=0,time_ms400=0;
-	//int temp;
-	
 	int t=0,i,data_L,data_M,data_R;		
 	u8 data_pose[3],error_id=0;
 	
 	delay_init();
 	
-//	Init_Tim2_Int();
-//	Ctr_Tim2(1);
+	TIM3_Int_Init(4999,7199);//10Khz的计数频率，计数到5000为500ms
 	
 	Init_Nvic();
 	uart_init(115200);
@@ -100,7 +86,7 @@ int main()
 		}
 		
 		//左
-		if(!LED_L)
+		else if(!LED_L)
 		{
 			delay_us(500);		//延时500us去抖动
 			if(!LED_L)
@@ -141,7 +127,7 @@ int main()
 			}
 		}
 		//右
-		if(!LED_R)
+		else if(!LED_R)
 		{
 			delay_us(500);		//延时500us去抖动
 			if(!LED_R)
@@ -179,9 +165,13 @@ int main()
 		
 		
 		//3个位置数据-合计3个字节---红外-ID=0x03；功能码=0x01
-		if(data_pose[0] != 0 || data_pose[1] != 0 || data_pose[2] != 0)
-		uart1_format_build_and_send(data_pose,0x03,0x01,3);		
-		memset(data_pose,0,3);		//发送成功后、清空数组
+		if(data_pose[0] != 0 || data_pose[1] != 0 || data_pose[2] != 0 || Send_Ask)
+		{
+			uart1_format_build_and_send(data_pose,0x03,0x01,3);		
+			memset(data_pose,0,3);		//发送成功后、清空数组
+			Send_Ask = 0;			//Clear_Send_Ask
+		}
+		
 	}
 
 }
@@ -207,7 +197,7 @@ u8 uart1_format_build_and_send(u8 *arg,u8 device_id,u8 commond_id,u8 length)
 	SendBuff[0] = 0xA6;
 	SendBuff[1] = 0x59;
 	//Length
-	SendBuff[2] = length+2;
+	SendBuff[2] = length+2+2+5+3;
 	//Device ID
 	SendBuff[3] = device_id;
 	//Command ID

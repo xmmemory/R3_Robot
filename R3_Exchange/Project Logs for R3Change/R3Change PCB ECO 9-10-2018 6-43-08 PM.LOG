@@ -1,0 +1,4 @@
+Change Component Footprint: Designator=µç³Ø Old Footprint=HDR1X2 New Footprint=VH-2A
+Change component parameters: Designator = "µç³Ø"; Footprint = "VH-2A"; UniqueID = "\AQWQDQHP"
+Change component parameters. Clean all parameters for all variants
+Added Room: Name=R3Change

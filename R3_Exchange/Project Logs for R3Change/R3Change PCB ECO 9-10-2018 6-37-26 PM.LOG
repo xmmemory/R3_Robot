@@ -1,0 +1,53 @@
+Removed Pin From Net: NetName=Battery+ Pin=D1-1
+Removed Pin From Net: NetName=+24_A Pin=D1-2
+Removed Pin From Net: NetName=Battery+ Pin=D2-1
+Removed Pin From Net: NetName=+24_A Pin=D2-2
+Removed Pin From Net: NetName=+24 Pin=D7-1
+Removed Pin From Net: NetName=+12_A Pin=D7-2
+Removed Pin From Net: NetName=GND Pin=D8-1
+Removed Pin From Net: NetName=GND Pin=D8-2
+Removed Pin From Net: NetName=+24 Pin=D9-1
+Removed Pin From Net: NetName=+12_B Pin=D9-2
+Removed Pin From Net: NetName=GND Pin=D10-1
+Removed Pin From Net: NetName=GND Pin=D10-2
+Removed Pin From Net: NetName=Battery+ Pin=电池-1
+Removed Pin From Net: NetName=GND Pin=电池-2
+Removed Pin From Net: NetName=Battery+ Pin=电池-3
+Removed Pin From Net: NetName=GND Pin=电池-4
+Removed Member From Class: ClassName=R3Change Member=D1
+Removed Member From Class: ClassName=R3Change Member=D2
+Removed Member From Class: ClassName=R3Change Member=D7
+Removed Member From Class: ClassName=R3Change Member=D8
+Removed Member From Class: ClassName=R3Change Member=D9
+Removed Member From Class: ClassName=R3Change Member=D10
+Change Component Footprint: Designator=电池 Old Footprint=HEADER 2X2 New Footprint=HDR1X2
+Change Component Comment : Designator=电池 Old Comment=插座 New Comment=Header 2
+Change component parameters: Designator = "电池"; Footprint = "HDR1X2"; UniqueID = "\RMBIKFPD"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=F1(Fuse)
+Add component. Clean all parameters for all variants
+Added Component: Designator=P1(Power_Model)
+Add component. Clean all parameters for all variants
+Added Component: Designator=P2(Power_Model)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=Battery+ Pin=F1-1
+Added Pin To Net: NetName=Battery+ Pin=F1-1
+Added Pin To Net: NetName=+24_A Pin=F1-2
+Added Pin To Net: NetName=+24_A Pin=F1-2
+Added Pin To Net: NetName=+24 Pin=P1-1
+Added Pin To Net: NetName=GND Pin=P1-2
+Added Pin To Net: NetName=+12_A Pin=P1-3
+Added Pin To Net: NetName=GND Pin=P1-4
+Added Pin To Net: NetName=+24 Pin=P2-1
+Added Pin To Net: NetName=GND Pin=P2-2
+Added Pin To Net: NetName=+12_B Pin=P2-3
+Added Pin To Net: NetName=GND Pin=P2-4
+Added Pin To Net: NetName=GND Pin=电池-1
+Added Pin To Net: NetName=Battery+ Pin=电池-2
+Added Member To Class: ClassName=R3Change Member=Component F1 Fuse
+Added Member To Class: ClassName=R3Change Member=Component P1 Power
+Added Member To Class: ClassName=R3Change Member=Component P2 Power
+Added Room: Name=R3Change

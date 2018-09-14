@@ -16,15 +16,15 @@ u8 Format_Check(u8 *p_arg,u8 length);							//数据格式校验
 void tmr1_callback(void *p_tmr,void *p_arg); 		//定时器1回调函数
 void Odom_Calculator(void *p_tmr, void *p_arg); 	//定时器2---里程计odom计算函数---20ms--50hz
 void PVD_Config(void);														//低电压中断初始化
-void Stop_Moving(void);													//紧急停止子程序
-u8 uart1_format_build_and_send(u8 *arg,u8 device_id,u8 commond_id,u8 length);		//串口1数据整理及发送函数
+void Stop_Moving(void);													//机器人停止子程序
 void Robot_Moving(float L_speed,float R_speed,u8 time);					//机器人移动
+u8 uart1_format_build_and_send(u8 *arg,u8 device_id,u8 commond_id,u8 length);		//串口1数据整理及发送函数
 /*
 *********************************************************************************************************
 *                                               DEFINES
 *********************************************************************************************************
 */
-#define GNUC_PACKED __attribute__((packed))f
+#define GNUC_PACKED __attribute__((packed))
 
 #define TASK_Q_NUM	3							//发任务内建消息队列的长度
 #define SPEED_TRANSFORM_Q_NUM	2		//速度下发任务内建消息队列的长度---2
@@ -48,12 +48,14 @@ const u8 TEXT_Buffer[]={"STM32 FLASH TEST"};
 */
 extern u8 odom_cal_status;//主函数步骤执行标志位
 extern int PULSE_RIGHT,PULSE_LEFT;
+u8 Charge_Status = 0;						//控制权限切换——1为本地控制、0为外部控制
 
 //上位机可修改的参数
-
 static u8 door_status = 0;		//静态全局变量
 u8 charge_status_push = 0;		//充电状态上传频率
-
+u8 Exit_Charge_Seconds = 20;				//充电脱离时长---n*100ms
+u32 Odom_Rate_Seconds = 100;				//odom上传间隔、100ms 
+/**************************************************************************************************************************/
 #define SEND_BUF_SIZE 256	//发送数据长度,最好等于sizeof(TEXT_TO_SEND)+2的整数倍.
 
 u8 SendBuff[SEND_BUF_SIZE];	//发送数据缓冲区
@@ -63,10 +65,7 @@ u8 tmr1sta=0; 											//标记定时器的工作状态
 OS_TMR	battery_status_tmr1;				//定义一个定时器
 OS_SEM	MY_SEM;											//定义一个信号量，用于控制ODOM的计算
 OS_TMR	Odom_Calculator_tmr2;				//定时器2---里程计pwm捕获回调函数---10ms--100hz
-
-u32 odom_rate_seconds = 100;				//odom上传间隔、100ms 
-u8 Control_Authority = 0;						//控制权限切换——1为本地控制、0为外部控制|0000 0000|---|0000 00 锁定使能 权限控制|
-/*******************************************UNION VARIABLES**************************************************************/
+/**************************************************************************************************************************/
 union recieveData							//接收到的数据
 {
 	float d;
@@ -445,7 +444,7 @@ void tmr1_callback(void *p_tmr,void *p_arg)
 	if(Battery_Status)
 	{
 		Stop_Moving();
-		Control_Authority = 1;		//切换为本地控制
+		Charge_Status = 1;		//切换为本地控制
 //		GPIO_SetBits(GPIOF,GPIO_Pin_8);   //BEEP引脚拉高， 等同BEEP=1;
 				
 		uart1_format_build_and_send(arry,0x01,0x03,0x01);		//发送数据到串口---id = 0x01,commond = 0x02;		
@@ -453,7 +452,7 @@ void tmr1_callback(void *p_tmr,void *p_arg)
 	else
 	{
 //		GPIO_ResetBits(GPIOF,GPIO_Pin_8); //BEEP引脚拉低， 等同BEEP=0;
-		Control_Authority = 0;		//切换为上位机控制
+		Charge_Status = 0;		//切换为上位机控制
 	}
 
 //	OSTmrStop(&battery_status_tmr1,OS_OPT_TMR_NONE,0,&err); //停止定时器1
@@ -572,7 +571,7 @@ void odom_send_task(void *p_arg)
 		uart1_format_build_and_send(odometry_data,0x01,0x01,length);		//发送数据到串口---id = 0x01,commond = 0x01;
 		OS_CRITICAL_EXIT();
 		/**********退出临界区*********/		
-		OSTimeDlyHMSM(0,0,0,odom_rate_seconds,OS_OPT_TIME_PERIODIC,&err);   //默认延时100ms--10Hz、
+		OSTimeDlyHMSM(0,0,0,Odom_Rate_Seconds,OS_OPT_TIME_PERIODIC,&err);   //默认延时100ms--10Hz、
 	}
 }
 /*
@@ -652,11 +651,11 @@ void uart1_analyze_task(void *p_arg)
 						//上位机请求控制权	
 						else if(*(p+5) == 0x03)					//充电脱离指令
 						{
-							Robot_Moving(100.00,100.00,30);		//机器人向前弹出一段距离
+							Robot_Moving(100.00,100.00,Exit_Charge_Seconds);		//机器人向前弹出一段距离
 						}
 						else if(*(p+5) == 0x04)					//允许控制权限切换
 						{
-//							Control_Authority |= 0x02;		
+//							Charge_Status |= 0x02;		
 						}
 						else if(*(p+5) == 0xF1)					//驱动器清障指令
 						{
@@ -677,7 +676,7 @@ void uart1_analyze_task(void *p_arg)
 						{							
 							case 0x01:	//两轮速度写入---指令地址0x01
 							{
-								if((Control_Authority&0x01) == 0)		//确认上位机是否有控制权限&&Moving状态
+								if((Charge_Status&0x01) == 0)		//确认上位机是否有控制权限&&Moving状态
 								{
 									OSTaskQPost((OS_TCB*)&SPEED_TRANSFORM_TaskTCB,	//向任务SPEED_TRANSFORM发送消息
 												(void*		)(p+6),
@@ -690,8 +689,11 @@ void uart1_analyze_task(void *p_arg)
 							case 0x02:
 								break;
 							case 0x05:		//修改上传频率
-								if((*(p+6)<=100) && (*(p+6)>1))		odom_rate_seconds = 1000 / *(p+6);
-								break;							
+								if((*(p+6)<=100) && (*(p+6)>1))		Odom_Rate_Seconds = 1000 / *(p+6);
+								break;	
+							case 0x06:		//修改脱离时长
+								if((*(p+6)<=50) && (*(p+6)>9))		Exit_Charge_Seconds = *(p+6);
+								break;	
 							case 0x08:		//开门指令---指令地址0x08
 							{
 								door_status = *(p+6);
