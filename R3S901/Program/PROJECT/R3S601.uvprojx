@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\STM32F10x_FWLib\inc;..\CORE;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HARDWARE;..\HARDWARE\DHT11;..\HARDWARE\LED;..\HARDWARE\ADC</IncludePath>
+              <IncludePath>..\USER;..\STM32F10x_FWLib\inc;..\CORE;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HARDWARE;..\HARDWARE\DHT11;..\HARDWARE\LED;..\HARDWARE\ADC;..\HARDWARE\DMA</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -588,6 +588,11 @@
               <FileName>adc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\ADC\adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\DMA\dma.c</FilePath>
             </File>
           </Files>
         </Group>

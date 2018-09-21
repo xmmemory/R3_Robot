@@ -114,11 +114,11 @@ void uart1_init(u32 bound){
 	USART_Cmd(USART1, ENABLE);  //使能串口1 
 	
 	USART_ClearFlag(USART1, USART_FLAG_TC);
-	USART_ClearFlag(USART1, USART_FLAG_IDLE);
+//	USART_ClearFlag(USART1, USART_FLAG_IDLE);
 	
 #if EN_USART1_RX	
 	USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);//开启相关中断
-	USART_ITConfig(USART1, USART_IT_IDLE, ENABLE);//开启相关中断
+//	USART_ITConfig(USART1, USART_IT_IDLE, ENABLE);//开启相关中断
 	//Usart1 NVIC 配置
 	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;//串口1中断通道
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=3;//抢占优先级3
@@ -342,33 +342,72 @@ u16 USART_RX_LEN=0;       											//记录接收长度
 
 extern OS_TCB	UART1_ANALYZE_TaskTCB;						//接收串口数据的UART1_ANALYZE_TaskTCB任务
 
+//接收结束标志位
+u8 End_Status = 0;
+
 void USART1_IRQHandler(void)                	//串口1中断服务程序
 {
 	unsigned char Res;
 #if SYSTEM_SUPPORT_OS  //使用UCOS操作系统
 	OSIntEnter();    
+	OS_ERR err;
 #endif
 	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)  //接收到一个字节
 	{
 		if(USART_RX_LEN > (USART_REC_LEN-1))	USART_RX_LEN = 0;	//防止数组溢出、一帧数据最大为254字节.
-		USART_RX_BUF[USART_RX_LEN++]=USART_ReceiveData(USART1);//(USART1->DR);	//读取接收到的数据
+		Res = USART_ReceiveData(USART1);//(USART1->DR);	//读取接收到的数据
+		USART_RX_BUF[USART_RX_LEN++]=	Res;
+		switch(Res)
+		{
+			case 0x0D:
+				if(End_Status == 0)
+					End_Status = 0x01;
+				else
+					End_Status = 0;
+				break;				
+			case 0x0A:
+				if(End_Status == 0x01)
+					End_Status = 0x02;
+				else
+					End_Status = 0;
+				break;
+			case 0x59:
+				if(End_Status == 0x02)
+					End_Status = 0x03;
+				else
+					End_Status = 0;
+				break;
+			case 0x48:
+				if(End_Status == 0x03)
+					End_Status = 0x04;
+				else
+					End_Status = 0;
+				break;
+			case 0x54:
+				if(End_Status == 0x04)
+					End_Status = 0x05;
+				else
+					End_Status = 0;
+				break;
+			default:
+				End_Status = 0;
+				break;
+		}
+		if(End_Status == 0x05)
+		{
+			End_Status = 0;
+			//发送消息
+			OSTaskQPost((OS_TCB*	)&UART1_ANALYZE_TaskTCB,	//向任务ART1_ANALYZE发送消息
+											(void*		)USART_RX_BUF,
+											(OS_MSG_SIZE)USART_RX_LEN,
+											(OS_OPT		)OS_OPT_POST_FIFO,
+						(OS_ERR*	)&err);
+			if(err == OS_ERR_NONE)
+				USART_RX_LEN=0;		//消息post完成，清空数组计数、重新开始接收
+			//若消息post fail---	
+			else USART_RX_LEN=0;			//暂时未想好怎么处理
+		}
 	}	
-	else if(USART_GetITStatus(USART1, USART_IT_IDLE) != RESET)//接收到一帧数据（接收到空闲帧）
-	{
-		//Res = USART2->SR;	//读SR后读DR清空IDLE标志位；
-		OS_ERR err;
-		Res = USART1->DR;
-		//发送消息
-		OSTaskQPost((OS_TCB*	)&UART1_ANALYZE_TaskTCB,	//向任务ART1_ANALYZE发送消息
-                    (void*		)USART_RX_BUF,
-                    (OS_MSG_SIZE)USART_RX_LEN,
-                    (OS_OPT		)OS_OPT_POST_FIFO,
-					(OS_ERR*	)&err);
-		if(err == OS_ERR_NONE)
-			USART_RX_LEN=0;		//消息post完成，清空数组计数、重新开始接收
-		//若消息post fail---	
-		else USART_RX_LEN=0;			//暂时未想好怎么处理
-	}
 	else if(USART_GetITStatus(USART1, USART_IT_ORE_RX) != RESET)   //ORE_RX错误 
 	{
 		Res = USART1->DR;

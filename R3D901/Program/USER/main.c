@@ -48,10 +48,10 @@ const u8 TEXT_Buffer[]={"STM32 FLASH TEST"};
 */
 extern u8 odom_cal_status;//主函数步骤执行标志位
 extern int PULSE_RIGHT,PULSE_LEFT;
+int PULSE_RIGHT_HIS,PULSE_LEFT_HIS;
 u8 Charge_Status = 0;						//控制权限切换——1为本地控制、0为外部控制
 
 //上位机可修改的参数
-static u8 door_status = 0;		//静态全局变量
 u8 charge_status_push = 0;		//充电状态上传频率
 u8 Exit_Charge_Seconds = 20;				//充电脱离时长---n*100ms
 u32 Odom_Rate_Seconds = 100;				//odom上传间隔、100ms 
@@ -379,20 +379,6 @@ void start_task(void *p_arg)
 								 (void   	* )0,					
 								 (OS_OPT      )OS_OPT_TASK_STK_CHK|OS_OPT_TASK_STK_CLR,
 								 (OS_ERR 	* )&err);
-	//创建DOOR_OPEN任务
-	OSTaskCreate((OS_TCB 	* )&DOOR_OPEN_TaskTCB,	
-								 (CPU_CHAR	* )"door open task", 		
-								 (OS_TASK_PTR )door_open_task, 			
-								 (void		* )0,
-								 (OS_PRIO	  )DOOR_OPEN_TASK_PRIO,     
-								 (CPU_STK   * )&DOOR_OPEN_TASK_STK[0],	
-								 (CPU_STK_SIZE)DOOR_OPEN_STK_SIZE/10,	
-								 (CPU_STK_SIZE)DOOR_OPEN_STK_SIZE,		
-								 (OS_MSG_QTY  )0,		//不需要使用内建消息队列			
-								 (OS_TICK	  )0,  					
-								 (void   	* )0,					
-								 (OS_OPT      )OS_OPT_TASK_STK_CHK|OS_OPT_TASK_STK_CLR,
-								 (OS_ERR 	* )&err);
 	//创建battery_Collect&Send任务
 	OSTaskCreate((OS_TCB 	* )&BATTERY_SEND_TaskTCB,	
 								 (CPU_CHAR	* )"Battery send task", 		
@@ -474,6 +460,8 @@ void Odom_Calculator(void *p_tmr, void *p_arg)
 	PULSE_RIGHT = ENCODER_RIGHT_TIMER->CNT - 32768;	//右电机码盘采集定时器 TIM4---TIM4编码器模式GPIOC6 GPIOC7 右电机
 	ENCODER_RIGHT_TIMER->CNT = 32768;
 	
+	PULSE_LEFT_HIS += PULSE_LEFT;
+	PULSE_RIGHT_HIS += PULSE_RIGHT;
 	//计算里程计
 	odometry_cal(PULSE_LEFT,PULSE_RIGHT);
 }
@@ -554,7 +542,11 @@ void odom_send_task(void *p_arg)
 		y_data.odoemtry_float=position_y;//单位mm	
 		theta_data.odoemtry_float=oriention;//单位rad
 		vel_linear.odoemtry_float=velocity_linear;//单位mm/s
-		vel_angular.odoemtry_float=velocity_angular;//单位rad/s				
+		vel_angular.odoemtry_float=velocity_angular;//单位rad/s
+/*
+		vel_linear.odoemtry_float=PULSE_LEFT_HIS;//单位mm/s
+		vel_angular.odoemtry_float=PULSE_RIGHT_HIS;//单位rad/s
+*/	
 		//将所有里程计数据存到要发送的数组
 		for(u8 j=0;j<4;j++)
 		{
@@ -696,7 +688,6 @@ void uart1_analyze_task(void *p_arg)
 								break;	
 							case 0x08:		//开门指令---指令地址0x08
 							{
-								door_status = *(p+6);
 							}break;
 						}						
 					}break;
@@ -798,31 +789,6 @@ void motor_init_task(void *p_arg)
 	GPIO_ResetBits(GPIOF,GPIO_Pin_8); //BEEP引脚拉低， 等同BEEP=0;	
 
 	OSTaskDel((OS_TCB*)0,&err);	//删除motor_init_task任务自身
-}
-/************************************************************************** 
-* Function Name  : door_open_task  
-* Description    : Open the door. 
-***************************************************************************/
-#define ClOSE_ALL PFout(11)=PFout(13)=PFout(14)=PFout(15)=1
-#define DOOR1 PFout(11)
-#define DOOR2 PFout(13)
-#define DOOR3 PFout(14)
-#define Infared_OUT PFout(15)
-#define Infared_GET PFin(0)
-void door_open_task(void *p_arg)
-{
-	OS_ERR err; 
-	while(1)
-	{
-		if(door_status == 0)	ClOSE_ALL;
-		if(door_status == 1)	DOOR1 = !DOOR1;
-		if(door_status == 2)	DOOR2 = !DOOR2;
-		if(door_status == 3)	DOOR3 = !DOOR3;
-		//红外人体检测
-		if(Infared_GET == 1)	Infared_OUT = 1;
-		else Infared_OUT = 0;
-		OSTimeDlyHMSM(0,0,0,500,OS_OPT_TIME_PERIODIC,&err); //延时1000ms
-	}
 }
 /************************************************************************** 
 * Function Name  : battery_send_task  

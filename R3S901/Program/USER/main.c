@@ -10,8 +10,9 @@
 #include "dht11.h"
 #include "led.h"
 #include "adc.h"
+#include "dma.h"
 
-#define SEND_BUF_SIZE 256	//发送数据长度,最好等于sizeof(TEXT_TO_SEND)+2的整数倍.
+#define SEND_BUF_SIZE 48	//发送数据长度,最好等于sizeof(TEXT_TO_SEND)+2的整数倍.
 u8 SendBuff[SEND_BUF_SIZE];	//发送数据缓冲区
 
 u8 uart1_format_build_and_send(u8 *arg,u8 device_id,u8 commond_id,u8 length);
@@ -39,7 +40,10 @@ int main()
 	delay_init();
 	Init_Tim5_Int();
 	Init_Nvic();
+	
 	uart_init(115200);
+	MYDMA_Config(DMA1_Channel4,(u32)&USART1->DR,(u32)SendBuff,SEND_BUF_SIZE);//DMA1通道4,外设为串口1,存储器为SendBuff,长度SEND_BUF_SIZE.
+	
 	uart3_init(9600);
 	uart2_init(19200);
 	IWDG_Init(4,625);   	//与分频数为64,重载值为625,溢出时间为1s
@@ -47,7 +51,10 @@ int main()
 	DHT11_Init();
 	LED_Init();
 	Adc_Init();		  		//ADC初始化
-	
+		
+	USART_DMACmd(USART1,USART_DMAReq_Tx,ENABLE); //使能串口1的DMA发送
+	MYDMA_Enable(DMA1_Channel4);//开始一次DMA传输！
+
 	while(1)
 	{
 		IWDG_Feed();	//喂狗
@@ -128,7 +135,7 @@ int main()
 u8 uart1_format_build_and_send(u8 *arg,u8 device_id,u8 commond_id,u8 length)
 {	
 	u16 check_sum;
-	u8 i,j,check_count;
+	u8 j,check_count;
 	
 	if(USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET)
 		return 1;	
@@ -160,13 +167,21 @@ u8 uart1_format_build_and_send(u8 *arg,u8 device_id,u8 commond_id,u8 length)
 	SendBuff[((length++)+5)]='Y';			//添加结束符
 	SendBuff[((length++)+5)]='H';			//添加结束符
 	SendBuff[((length++)+5)]='T';			//添加结束符
-
-	for(i=0;i<length+5;i++)
+	
+	if(DMA_GetFlagStatus(DMA1_FLAG_TC4)!=RESET)	//判断通道4传输完成
 	{
-		USART_ClearFlag(USART1,USART_FLAG_TC);  //在发送第一个数据前加此句，解决第一个数据不能正常发送的问题				
-		USART_SendData(USART1,SendBuff[i]);//发送一个字节到串口
-		while(USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET);	//等待发送结束
-	} 	
-	return 0;
+		DMA_ClearFlag(DMA1_FLAG_TC4);//清除通道4传输完成标志
+		USART_DMACmd(USART1,USART_DMAReq_Tx,ENABLE); //使能串口1的DMA发送
+		MYDMA_Enable(DMA1_Channel4);//开始一次DMA传输！
+		return 0;
+	}
+	else
+		return 3;
+//	for(i=0;i<length+5;i++)
+//	{
+//		USART_ClearFlag(USART1,USART_FLAG_TC);  //在发送第一个数据前加此句，解决第一个数据不能正常发送的问题				
+//		USART_SendData(USART1,SendBuff[i]);//发送一个字节到串口
+//		while(USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET);	//等待发送结束
+//	} 		
 }
 

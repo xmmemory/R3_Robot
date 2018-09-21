@@ -1,0 +1,90 @@
+Removed Member From Class: ClassName=R3P900 Member=L?
+Removed Member From Class: ClassName=R3P900 Member=V?
+Added Component: Designator=C1(Cap_5.0)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Value"; Value = "uF"; VariantName = "[No Variations]"
+Added Component: Designator=C2(CC6.56.5)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C3(LC-0805_C)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_50686.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C49678"; VariantName = "[No Variations]"
+Added Component: Designator=D1(LC-SMA(DO-214AC)_S1)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_15669.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "SMA(DO-214AC)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C14996"; VariantName = "[No Variations]"
+Added Component: Designator=D2(LC-LL-34)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_8541.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "LL-34"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C8062"; VariantName = "[No Variations]"
+Added Component: Designator=D3(LC-SMA(DO-214AC)_S1)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_23178.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "SMA(DO-214AC)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C22452"; VariantName = "[No Variations]"
+Added Component: Designator=L1(L_SOP74)
+Add component. Clean all parameters for all variants
+Added Component: Designator=P1(DC10B)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=R1(LC-0805_R)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_18163.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C17475"; VariantName = "[No Variations]"
+Added Component: Designator=U1(LC-TO-220-5)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=+5 Pin=C2-1
+Added Pin To Net: NetName=+5 Pin=C3-2
+Added Pin To Net: NetName=+5 Pin=D2-2
+Added Pin To Net: NetName=+5 Pin=L1-1
+Added Pin To Net: NetName=+5 Pin=U1-4
+Added Net: Name=+5
+Added Pin To Net: NetName=+24 Pin=C1-1
+Added Pin To Net: NetName=+24 Pin=D1-2
+Added Pin To Net: NetName=+24 Pin=R1-2
+Added Pin To Net: NetName=+24 Pin=U1-1
+Added Net: Name=+24
+Added Pin To Net: NetName=12_IN Pin=D1-1
+Added Pin To Net: NetName=12_IN Pin=P1-1
+Added Net: Name=12_IN
+Added Pin To Net: NetName=GND Pin=C1-2
+Added Pin To Net: NetName=GND Pin=C2-2
+Added Pin To Net: NetName=GND Pin=C3-1
+Added Pin To Net: NetName=GND Pin=D2-1
+Added Pin To Net: NetName=GND Pin=D3-1
+Added Pin To Net: NetName=GND Pin=P1-2
+Added Pin To Net: NetName=GND Pin=U1-3
+Added Pin To Net: NetName=GND Pin=U1-5
+Added Net: Name=GND
+Added Pin To Net: NetName=NetD3_2 Pin=D3-2
+Added Pin To Net: NetName=NetD3_2 Pin=L1-2
+Added Pin To Net: NetName=NetD3_2 Pin=U1-2
+Added Net: Name=NetD3_2
+Added Pin To Net: NetName=NetR1_1 Pin=R1-1
+Added Net: Name=NetR1_1
+Added Member To Class: ClassName=R3P900 Member=Component C1 Cap
+Added Member To Class: ClassName=R3P900 Member=Component C2 220uF
+Added Member To Class: ClassName=R3P900 Member=Component C3 100nF(104) 10% 50V
+Added Member To Class: ClassName=R3P900 Member=Component D1 SS210
+Added Member To Class: ClassName=R3P900 Member=Component D2 ZMM5V6
+Added Member To Class: ClassName=R3P900 Member=Component D3 SS54
+Added Member To Class: ClassName=R3P900 Member=Component L1 4.7uH
+Added Member To Class: ClassName=R3P900 Member=Component P1 Header 3
+Added Member To Class: ClassName=R3P900 Member=Component R1 15KΩ (1502) ±1%
+Added Member To Class: ClassName=R3P900 Member=Component U1 LM2596
