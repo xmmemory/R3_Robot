@@ -1,7 +1,0 @@
-Removed Pin From Net: NetName=NetL2_2 Pin=L2-2
-Removed Pin From Net: NetName=GND_GL Pin=R8-2
-Removed Pin From Net: NetName=+5 Pin=隔离电源-2
-Added Pin To Net: NetName=GND_GL Pin=L2-2
-Added Pin To Net: NetName=+5 Pin=R8-2
-Added Pin To Net: NetName=NetL2_2 Pin=隔离电源-2
-Change Net Name : Old Net Name=NetL2_2 New Net Name=NetR8_1

@@ -1,9 +1,0 @@
-Removed Pin From Net: NetName=NetR15_1 Pin=R15-1
-Removed Pin From Net: NetName=+5 Pin=R15-2
-Removed Pin From Net: NetName=NetR15_1 Pin=隔离电源1-2
-Removed Member From Class: ClassName=R3S602 Member=R15
-Added Pin To Net: NetName=NetR15_1 Pin=U5-25
-Added Pin To Net: NetName=+5 Pin=隔离电源1-2
-Added Pin To Net: NetName=NetR15_1 Pin=颗粒物1-3
-Change Net Name : Old Net Name=NetR15_1 New Net Name=NetU5_25
-Added Room: Name=R3S602

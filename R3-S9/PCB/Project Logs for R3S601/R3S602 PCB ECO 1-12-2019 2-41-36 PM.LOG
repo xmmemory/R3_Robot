@@ -1,4 +1,0 @@
-Removed Pin From Net: NetName=U_RX Pin=Com-1
-Removed Pin From Net: NetName=U_TX Pin=Com-2
-Removed Pin From Net: NetName=GND Pin=Com-3
-Removed Member From Class: ClassName=R3S602 Member=Com

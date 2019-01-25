@@ -1,8 +1,0 @@
-Removed Pin From Net: NetName=USART3_TX Pin=颗粒物-4
-Removed Pin From Net: NetName=USART3_RX Pin=颗粒物-5
-Removed Pin From Net: NetName=USART2_RX Pin=风速-2
-Removed Pin From Net: NetName=USART2_TX Pin=风速-3
-Added Pin To Net: NetName=USART2_TX Pin=颗粒物-4
-Added Pin To Net: NetName=USART2_RX Pin=颗粒物-5
-Added Pin To Net: NetName=USART3_RX Pin=风速-2
-Added Pin To Net: NetName=USART3_TX Pin=风速-3

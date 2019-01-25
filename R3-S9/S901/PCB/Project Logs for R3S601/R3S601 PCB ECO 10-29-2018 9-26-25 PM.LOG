@@ -1,0 +1,14 @@
+Removed Pin From Net: NetName=GND Pin=U2-44
+Added Component: Designator=R12(LC-0805_R)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_18102.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C17414"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=R12-2
+Added Pin To Net: NetName=NetR12_1 Pin=R12-1
+Added Pin To Net: NetName=NetR12_1 Pin=U2-44
+Added Net: Name=NetR12_1
+Added Member To Class: ClassName=R3S601 Member=Component R12 10KΩ (1002) ±1%
+Added Member To Class: ClassName=R3S601 Member=Component U2 STM32F103C8T6

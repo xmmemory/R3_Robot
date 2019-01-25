@@ -1,3 +1,0 @@
-Removed Pin From Net: NetName=+3.3 Pin=UARTͨѶ-4
-Change Component Footprint: Designator=UARTͨѶ Old Footprint=HDR1X4 New Footprint=HDR1X3
-Change Component Comment : Designator=UARTͨѶ Old Comment=Header 4 New Comment=Header 3

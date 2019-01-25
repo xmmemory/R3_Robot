@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=IIC_SCL Pin=U1-42
+Removed Pin From Net: NetName=IIC_SDA Pin=U1-43
+Added Pin To Net: NetName=IIC_SDA Pin=U1-42
+Added Pin To Net: NetName=IIC_SCL Pin=U1-43
+Added Member To Class: ClassName=R3S602 Member=Component R1 10K¦¸ (1002) ¡À1%
