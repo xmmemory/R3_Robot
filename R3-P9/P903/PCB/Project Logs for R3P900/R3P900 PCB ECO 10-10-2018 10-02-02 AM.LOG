@@ -1,0 +1,5 @@
+Added Component: Designator=激光(VH-2A)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=+12A Pin=激光-1
+Added Pin To Net: NetName=GND Pin=激光-2
+Added Member To Class: ClassName=R3P900 Member=Component 激光 Header 2

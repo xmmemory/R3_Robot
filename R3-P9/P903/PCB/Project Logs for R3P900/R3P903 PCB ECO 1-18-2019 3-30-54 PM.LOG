@@ -1,0 +1,3 @@
+Change Net Name : Old Net Name=NetR8_1 New Net Name=Boot0
+Added Member To Class: ClassName=R3P900 Member=Component C15 1uF (105) 10% 50V
+Added Member To Class: ClassName=R3P900 Member=Component Q2 SS8050 Y1

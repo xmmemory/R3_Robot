@@ -1,0 +1,21 @@
+Change Component Designator: OldDesignator=D7 NewDesignator=D1
+Added Component: Designator=D5(LC-SMA(DO-214AC)_S1)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_15669.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "SMA(DO-214AC)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C14996"; VariantName = "[No Variations]"
+Added Component: Designator=自动充电判断(HDR1X2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=In_Charge Pin=D5-2
+Added Pin To Net: NetName=GND Pin=自动充电判断-2
+Change Net Name : Old Net Name=NetD7_1 New Net Name=NetD1_1
+Added Pin To Net: NetName=NetD5_1 Pin=D5-1
+Added Pin To Net: NetName=NetD5_1 Pin=自动充电判断-1
+Added Net: Name=NetD5_1
+Added Member To Class: ClassName=R3P900 Member=Component D5 SS210
+Added Member To Class: ClassName=R3P900 Member=Component 自动充电判断 Header 2

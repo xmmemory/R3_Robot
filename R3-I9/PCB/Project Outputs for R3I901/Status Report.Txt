@@ -1,0 +1,24 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [R3I901.PrjPCB]
+   Generated File[R3I901.GTO]
+   Generated File[R3I901.GTP]
+   Generated File[R3I901.GTS]
+   Generated File[R3I901.GTL]
+   Generated File[R3I901.GBL]
+   Generated File[R3I901.GBS]
+   Generated File[R3I901.GM13]
+   Generated File[R3I901.GM15]
+   Generated File[R3I901.GKO]
+   Generated File[R3I901.GPT]
+   Generated File[R3I901.GPB]
+   Generated File[R3I901.GD1]
+   Generated File[R3I901.RUL]
+   Generated File[R3I901.EXTREP]
+   Generated File[R3I901.REP]
+
+
+Files Generated   : 15
+Documents Printed : 0
+
+Finished Output Generation At 7:32:14 PM On 12/7/2018

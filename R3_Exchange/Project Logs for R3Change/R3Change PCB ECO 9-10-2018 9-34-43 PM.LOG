@@ -1,7 +1,0 @@
-Removed Pin From Net: NetName=+24_Bat Pin=开关-1
-Removed Pin From Net: NetName=+24 Pin=开关-2
-Added Pin To Net: NetName=+24 Pin=开关-1
-Added Pin To Net: NetName=+24_Bat Pin=开关-2
-Added Member To Class: ClassName=R3Change Member=Component 12A指示灯 红灯 0805
-Added Member To Class: ClassName=R3Change Member=Component 12B指示灯 红灯 0805
-Added Member To Class: ClassName=R3Change Member=Component 开关指示灯 红灯 0805

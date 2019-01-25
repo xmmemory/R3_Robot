@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=FDL1 Pin=FDL1-2
+Added Component: Designator=R25(LC-0805_R)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_18361.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C17673"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=FDL1 Pin=R25-2
+Added Pin To Net: NetName=NetFDL1_2 Pin=FDL1-2
+Added Pin To Net: NetName=NetFDL1_2 Pin=R25-1
+Added Net: Name=NetFDL1_2
+Added Member To Class: ClassName=R3D900 Member=Component R25 4.7KΩ (4701) ±1%

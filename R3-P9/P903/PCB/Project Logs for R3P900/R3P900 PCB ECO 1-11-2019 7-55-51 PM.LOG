@@ -1,0 +1,16 @@
+Removed Pin From Net: NetName=NetD8_1 Pin=Q1-2
+Removed Pin From Net: NetName=GND Pin=Q1-3
+Removed Pin From Net: NetName=+5 Pin=R10-1
+Removed Pin From Net: NetName=JQD Pin=R10-2
+Change Component Comment : Designator=Q1 Old Comment=SS8550 Y2 New Comment=SS8050 Y1
+Change component parameters: Designator = "Q1"; Footprint = "LC-SOT-23(SOT-23-3)"; UniqueID = "\AGEWYHEE"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_2507.html"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "SOT-23"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SuppliersPartNumber"; Value = "C2150"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=Q1-2
+Added Pin To Net: NetName=NetD8_1 Pin=Q1-3
+Added Pin To Net: NetName=NetC8_2 Pin=R10-1
+Added Pin To Net: NetName=GND Pin=R10-2

@@ -1,0 +1,15 @@
+Change Net Name : Old Net Name=NetCAN_1 New Net Name=CAN_H
+Change Net Name : Old Net Name=NetCAN_2 New Net Name=CAN_L
+Added Member To Class: ClassName=D3R900 Member=Component C3 Cap
+Added Member To Class: ClassName=D3R900 Member=Component C5 100nF(104) 10% 50V
+Added Member To Class: ClassName=D3R900 Member=Component C7 Cap
+Added Member To Class: ClassName=D3R900 Member=Component C8 220uF
+Added Member To Class: ClassName=D3R900 Member=Component C11 100nF(104) 10% 50V
+Added Member To Class: ClassName=D3R900 Member=Component D2 SS210
+Added Member To Class: ClassName=D3R900 Member=Component D4 SS54
+Added Member To Class: ClassName=D3R900 Member=Component R1 120次 (1200) ㊣1%
+Added Member To Class: ClassName=D3R900 Member=Component R6 10K次 (1002) ㊣1%
+Added Member To Class: ClassName=D3R900 Member=Component R7 510K次 (5103) ㊣1%
+Added Member To Class: ClassName=D3R900 Member=Component R8 510K次 (5103) ㊣1%
+Added Member To Class: ClassName=D3R900 Member=Component R9 510K次 (5103) ㊣1%
+Added Member To Class: ClassName=D3R900 Member=Component U2 LM2596SX-5.0/NOPB

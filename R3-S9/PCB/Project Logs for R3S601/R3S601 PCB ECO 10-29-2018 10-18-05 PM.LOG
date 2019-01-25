@@ -1,0 +1,11 @@
+Change Component Designator: OldDesignator=P1 NewDesignator=G U - V
+Added Component: Designator=RESET(KEY_M)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=NetC12_2 Pin=RESET-1
+Added Pin To Net: NetName=NetC12_2 Pin=RESET-1
+Added Pin To Net: NetName=GND Pin=RESET-2
+Added Pin To Net: NetName=GND Pin=RESET-2
+Change Net Name : Old Net Name=NetP1_2 New Net Name=NetG U - V_2
+Change Net Name : Old Net Name=NetP1_3 New Net Name=NetG U - V_3
+Change Net Name : Old Net Name=NetP1_4 New Net Name=NetG U - V_4
+Added Member To Class: ClassName=R3S601 Member=Component RESET KEY_M

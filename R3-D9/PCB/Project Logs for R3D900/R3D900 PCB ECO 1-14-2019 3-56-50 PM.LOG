@@ -1,0 +1,4 @@
+Change Physical Footprint: Designator=DC_IN Old Footprint=VH-2A - Circle Hole New Footprint=VH-2A - Circle Hole
+Change Physical Footprint: Designator=G D+ D- V Old Footprint=HDR1X4 New Footprint=HDR1X4
+Change Physical Footprint: Designator=ÓÒ±àÂëÆ÷ Old Footprint=PHB_2x6_2.0 New Footprint=PHB_2x6_2.0
+Change Physical Footprint: Designator=×ó±àÂëÆ÷ Old Footprint=PHB_2x6_2.0 New Footprint=PHB_2x6_2.0

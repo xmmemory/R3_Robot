@@ -1,0 +1,19 @@
+Change Component Designator: OldDesignator=C? NewDesignator=C6
+Change Component Designator: OldDesignator=C? NewDesignator=C7
+Change Component Designator: OldDesignator=D? NewDesignator=D1
+Change Component Designator: OldDesignator=D? NewDesignator=D7
+Change Component Designator: OldDesignator=R? NewDesignator=R8
+Change Component Designator: OldDesignator=R? NewDesignator=R9
+Change Component Designator: OldDesignator=U? NewDesignator=U2
+Change Net Name : Old Net Name=NetD?_K New Net Name=NetD1_K
+Change Net Name : Old Net Name=NetR?_2 New Net Name=NetR9_2
+Added Pin To Net: NetName=NetD7_K Pin=D7-K
+Added Pin To Net: NetName=NetD7_K Pin=R9-1
+Added Net: Name=NetD7_K
+Added Pin To Net: NetName=NetR8_2 Pin=R8-2
+Added Pin To Net: NetName=NetR8_2 Pin=U2-10
+Added Pin To Net: NetName=NetR8_2 Pin=œ¬‘ÿ-2
+Added Net: Name=NetR8_2
+Added Member To Class: ClassName=R3P900 Member=Component C6 4.7uF (475) 10% 25V
+Added Member To Class: ClassName=R3P900 Member=Component D7 ¥‰¬Ã 0805
+Added Member To Class: ClassName=R3P900 Member=Component R8 10K¶∏ (1002) °¿1%

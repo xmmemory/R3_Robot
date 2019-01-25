@@ -1,0 +1,1 @@
+"Application\Source\USART2.C" BROWSE INCDIR(.\Application\Header) DEBUG OBJECTEXTEND PRINT(.\Lis\USART2.lst) OBJECT(.\Obj\USART2.obj)

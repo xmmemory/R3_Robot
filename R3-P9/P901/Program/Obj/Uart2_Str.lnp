@@ -1,0 +1,7 @@
+".\Obj\main.obj",
+".\Obj\GPIO.obj",
+".\Obj\USART1.obj",
+".\Obj\timer.obj",
+".\Obj\STARTUP.obj" 
+TO ".\Obj\Uart2_Str" 
+PRINT(".\Lis\Uart2_Str.m51") RAMSIZE(256) 

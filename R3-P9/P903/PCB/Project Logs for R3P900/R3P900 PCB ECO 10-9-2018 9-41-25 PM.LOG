@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=+Motor Pin=¼±Í£-1
+Removed Pin From Net: NetName=Battery_IN Pin=¼±Í£-2
+Added Pin To Net: NetName=Battery_IN Pin=¼±Í£-1
+Added Pin To Net: NetName=+Motor Pin=¼±Í£-2

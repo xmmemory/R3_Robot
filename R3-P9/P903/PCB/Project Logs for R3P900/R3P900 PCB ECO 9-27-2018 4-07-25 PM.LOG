@@ -1,0 +1,138 @@
+Removed Pin From Net: NetName=+24 Pin=C1-1
+Removed Pin From Net: NetName=+24 Pin=D1-1
+Removed Pin From Net: NetName=+12 Pin=D5-2
+Removed Pin From Net: NetName=+12 Pin=D6-2
+Removed Pin From Net: NetName=+24 Pin=F1-2
+Removed Pin From Net: NetName=+24 Pin=F1-2
+Removed Pin From Net: NetName=+12 Pin=U1-3
+Removed Pin From Net: NetName=+12 Pin=U2-3
+Removed Pin From Net: NetName=+24 Pin=U3-1
+Change Component Comment : Designator=D4 Old Comment=SMBJ5.0A New Comment=SMBJ3.3A
+Change Component Comment : Designator=D3 Old Comment=SMBJ5.0A New Comment=SMBJ12A
+Change Component Comment : Designator=D1 Old Comment=SS210 New Comment=SS54
+Change component parameters: Designator = "C3"; Footprint = "LC-0603_C"; UniqueID = "\OAMORWIT"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_15331.html"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "0603"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SuppliersPartNumber"; Value = "C14663"; VariantName = "[No Variations]"
+Change component parameters: Designator = "C4"; Footprint = "LC-0805_C"; UniqueID = "\UNGRMBEV"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_16532.html"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "0805"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SuppliersPartNumber"; Value = "C15850"; VariantName = "[No Variations]"
+Change component parameters: Designator = "C5"; Footprint = "LC-0805_C"; UniqueID = "\UUNOXJGR"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_46786.html"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "0805"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SuppliersPartNumber"; Value = "C45783"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D2"; Footprint = "LC-SMA(DO-214AC)_S1"; UniqueID = "\FAQTMOVK"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_23178.html"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "SMA(DO-214AC)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SuppliersPartNumber"; Value = "C22452"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R1"; Footprint = "LC-0805_R"; UniqueID = "\FJDYOIGP"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_18163.html"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "0805"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SuppliersPartNumber"; Value = "C17475"; VariantName = "[No Variations]"
+Change component parameters: Designator = "VR1"; Footprint = "LC-SOT-223"; UniqueID = "\SHRAQWFC"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_6652.html"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "SOT-223"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SuppliersPartNumber"; Value = "C6186"; VariantName = "[No Variations]"
+Change component parameters: Designator = "电源"; Footprint = "LC-0805_LED_S1"; UniqueID = "\ROUYCDQG"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_2668.html"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "0805"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SuppliersPartNumber"; Value = "C2295"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D1"; Footprint = "LC-SMA(DO-214AC)_S1"; UniqueID = "\TADMVHRQ"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_23178.html"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "SMA(DO-214AC)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SuppliersPartNumber"; Value = "C22452"; VariantName = "[No Variations]"
+Added Component: Designator=底盘控制器(VH-2A)
+Add component. Clean all parameters for all variants
+Added Component: Designator=开关(VH-2A)
+Add component. Clean all parameters for all variants
+Added Component: Designator=开门器(VH-2A)
+Add component. Clean all parameters for all variants
+Added Component: Designator=急停(VH-2A)
+Add component. Clean all parameters for all variants
+Added Component: Designator=摄像头(VH-2A)
+Add component. Clean all parameters for all variants
+Added Component: Designator=显示器(VH-2A)
+Add component. Clean all parameters for all variants
+Added Component: Designator=电脑(VH-2A)
+Add component. Clean all parameters for all variants
+Added Component: Designator=红外接收器(VH-2A)
+Add component. Clean all parameters for all variants
+Added Component: Designator=预留1(VH-2A)
+Add component. Clean all parameters for all variants
+Added Component: Designator=预留2(VH-2A)
+Add component. Clean all parameters for all variants
+Added Component: Designator=驱动器(HEADER 2X2)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=底盘控制器-2
+Added Pin To Net: NetName=+24 Pin=开关-1
+Added Pin To Net: NetName=GND Pin=开门器-2
+Added Pin To Net: NetName=+24 Pin=急停-2
+Added Pin To Net: NetName=GND Pin=摄像头-2
+Added Pin To Net: NetName=GND Pin=显示器-2
+Added Pin To Net: NetName=GND Pin=电脑-2
+Added Pin To Net: NetName=GND Pin=红外接收器-2
+Added Pin To Net: NetName=GND Pin=预留1-2
+Added Pin To Net: NetName=GND Pin=预留2-2
+Added Pin To Net: NetName=GND Pin=驱动器-2
+Added Pin To Net: NetName=GND Pin=驱动器-4
+Added Pin To Net: NetName=+12A Pin=C1-1
+Added Pin To Net: NetName=+12A Pin=D6-2
+Added Pin To Net: NetName=+12A Pin=U1-3
+Added Pin To Net: NetName=+12A Pin=U3-1
+Added Pin To Net: NetName=+12A Pin=电脑-1
+Added Pin To Net: NetName=+12A Pin=预留2-1
+Added Net: Name=+12A
+Added Pin To Net: NetName=+12B Pin=D5-2
+Added Pin To Net: NetName=+12B Pin=U2-3
+Added Pin To Net: NetName=+12B Pin=底盘控制器-1
+Added Pin To Net: NetName=+12B Pin=开门器-1
+Added Pin To Net: NetName=+12B Pin=摄像头-1
+Added Pin To Net: NetName=+12B Pin=显示器-1
+Added Pin To Net: NetName=+12B Pin=红外接收器-1
+Added Pin To Net: NetName=+12B Pin=预留1-1
+Added Net: Name=+12B
+Added Pin To Net: NetName=+24_IN Pin=D1-1
+Added Pin To Net: NetName=+24_IN Pin=F1-2
+Added Pin To Net: NetName=+24_IN Pin=F1-2
+Added Pin To Net: NetName=+24_IN Pin=开关-2
+Added Net: Name=+24_IN
+Added Pin To Net: NetName=+Motor Pin=急停-1
+Added Pin To Net: NetName=+Motor Pin=驱动器-1
+Added Pin To Net: NetName=+Motor Pin=驱动器-3
+Added Net: Name=+Motor
+Added Member To Class: ClassName=R3P900 Member=Component 底盘控制器 Header 2
+Added Member To Class: ClassName=R3P900 Member=Component 开关 Header 2
+Added Member To Class: ClassName=R3P900 Member=Component 开门器 Header 2
+Added Member To Class: ClassName=R3P900 Member=Component 急停 Header 2
+Added Member To Class: ClassName=R3P900 Member=Component 摄像头 Header 2
+Added Member To Class: ClassName=R3P900 Member=Component 显示器 Header 2
+Added Member To Class: ClassName=R3P900 Member=Component 电脑 Header 2
+Added Member To Class: ClassName=R3P900 Member=Component 红外接收器 Header 2
+Added Member To Class: ClassName=R3P900 Member=Component 预留1 Header 2
+Added Member To Class: ClassName=R3P900 Member=Component 预留2 Header 2
+Added Member To Class: ClassName=R3P900 Member=Component 驱动器 插座

@@ -1,0 +1,3 @@
+Removed Pin From Net: NetName=+12B Pin=红外接收器-1
+Removed Pin From Net: NetName=GND Pin=红外接收器-2
+Removed Member From Class: ClassName=R3P900 Member=红外接收器

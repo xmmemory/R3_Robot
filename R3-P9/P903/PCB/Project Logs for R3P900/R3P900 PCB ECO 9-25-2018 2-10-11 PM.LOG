@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=24_IN Pin=D1-1
+Removed Pin From Net: NetName=+24 Pin=D1-2
+Removed Pin From Net: NetName=+24 Pin=R1-1
+Removed Pin From Net: NetName=GND Pin=电源-K
+Added Component: Designator=FUSE(LC-1206_R)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_18576.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "1206"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C17888"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=24_IN Pin=FUSE-1
+Added Member To Class: ClassName=R3P900 Member=Component FUSE 0Ω (0R0) ±1%

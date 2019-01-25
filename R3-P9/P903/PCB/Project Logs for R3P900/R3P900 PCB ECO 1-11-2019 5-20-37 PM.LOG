@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=NetI2CͨѶ_3 Pin=R19-1
+Removed Pin From Net: NetName=IIC_SCL Pin=R19-2
+Removed Pin From Net: NetName=NetI2CͨѶ_2 Pin=R20-1
+Removed Pin From Net: NetName=IIC_SCL Pin=R20-2
+Removed Pin From Net: NetName=IIC_SCL Pin=U1-42
+Removed Pin From Net: NetName=IIC_SCL Pin=U1-43
+Removed Member From Class: ClassName=R3P900 Member=R19
+Removed Member From Class: ClassName=R3P900 Member=R20
+Added Pin To Net: NetName=NetI2CͨѶ_3 Pin=U1-42
+Added Pin To Net: NetName=NetI2CͨѶ_2 Pin=U1-43
+Change Net Name : Old Net Name=IIC_SCL New Net Name=+3.3
+Change Net Name : Old Net Name=NetI2CͨѶ_2 New Net Name=IIC_SDA
+Change Net Name : Old Net Name=NetI2CͨѶ_3 New Net Name=IIC_SCL

@@ -1,0 +1,9 @@
+Change Component Footprint: Designator=U3 Old Footprint=LC-TO-220-5 New Footprint=LC-TO-263-5
+Change Component Comment : Designator=U3 Old Comment=LM2596 New Comment=LM2596SX-5.0/NOPB
+Change component parameters: Designator = "U3"; Footprint = "LC-TO-263-5"; UniqueID = "\SLEMULVQ"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_10538.html"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "TO-263-5"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SuppliersPartNumber"; Value = "C10002"; VariantName = "[No Variations]"

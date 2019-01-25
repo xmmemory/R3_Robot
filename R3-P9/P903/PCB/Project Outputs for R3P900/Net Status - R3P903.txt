@@ -1,0 +1,56 @@
+Net Status Report
+Filename     : D:\Ray_Git\Ray\Robot\R3-P9\PCB\R3P903.PcbDoc
+Date         : 1/13/2019
+Time         : 12:52:35 PM
+Time Elapsed : 00:00:00
+
+Nets, Layer, Length
+    +12, Signal Layers Only, 6764.03mils
+    +24_INCONTROL, Signal Layers Only, 1818.027mils
+    +3.3, Signal Layers Only, 9157.376mils
+    +5, Signal Layers Only, 3275.948mils
+    +Motor, Signal Layers Only, 749.514mils
+    12V_IN, Signal Layers Only, 1564.611mils
+    ADC_IN6, Signal Layers Only, 0mils
+    ADC_IN7, Signal Layers Only, 0mils
+    ADC_IN8, Signal Layers Only, 0mils
+    BM0, Signal Layers Only, 1862.837mils
+    BM1, Signal Layers Only, 1896.105mils
+    BM2, Signal Layers Only, 1968.838mils
+    BM3, Signal Layers Only, 2046.04mils
+    Battery, Signal Layers Only, 1563.011mils
+    Battery_IN, Signal Layers Only, 2883.405mils
+    Battery_V, Signal Layers Only, 1406.258mils
+    GND, Signal Layers Only, 28546.42mils
+    IIC_SCL, Signal Layers Only, 513.506mils
+    IIC_SDA, Signal Layers Only, 585.126mils
+    In_Charge, Signal Layers Only, 2042.28mils
+    JQD, Signal Layers Only, 401.81mils
+    LED0, Signal Layers Only, 671.929mils
+    LED1, Signal Layers Only, 611.17mils
+    NRST, Signal Layers Only, 1998.223mils
+    Net12VµÁ‘¥_A, Signal Layers Only, 139.921mils
+    NetC12_1, Signal Layers Only, 1102.392mils
+    NetC13_2, Signal Layers Only, 928.342mils
+    NetC8_2, Signal Layers Only, 428.357mils
+    NetD1_A, Signal Layers Only, 134.961mils
+    NetD2_A, Signal Layers Only, 134.961mils
+    NetD8_1, Signal Layers Only, 1304.417mils
+    NetF1_1, Signal Layers Only, 1571.164mils
+    NetR13_1, Signal Layers Only, 450.583mils
+    NetR16_1, Signal Layers Only, 439.961mils
+    NetR17_1, Signal Layers Only, 442.032mils
+    NetR1_2, Signal Layers Only, 100.017mils
+    NetR3_2, Signal Layers Only, 100.039mils
+    NetR8_1, Signal Layers Only, 788.25mils
+    SWCLK, Signal Layers Only, 925.306mils
+    SWDIO, Signal Layers Only, 1015.207mils
+    USART2_RX, Signal Layers Only, 1547.617mils
+    USART2_TX, Signal Layers Only, 1545.802mils
+    USART3_RX, Signal Layers Only, 0mils
+    USART3_TX, Signal Layers Only, 0mils
+    USB_D+, Signal Layers Only, 1561.875mils
+    USB_D-, Signal Layers Only, 1465.345mils
+    U_RX, Signal Layers Only, 1773.39mils
+    U_TX, Signal Layers Only, 1665.236mils
+count : 48

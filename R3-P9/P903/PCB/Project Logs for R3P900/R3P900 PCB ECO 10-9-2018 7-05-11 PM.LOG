@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=GND Pin=C6-1
+Removed Pin From Net: NetName=+5 Pin=C6-2
+Change Component Footprint: Designator=C6 Old Footprint=LC-1206_C New Footprint=LC-0805_C
+Change Component Comment : Designator=C6 Old Comment=4.7uF (475) 10% 50V New Comment=4.7uF (475) 10% 25V
+Change component parameters: Designator = "C6"; Footprint = "LC-0805_C"; UniqueID = "\SYTGAOET"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_2131.html"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "0805"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SuppliersPartNumber"; Value = "C1779"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+5 Pin=C6-1
+Added Pin To Net: NetName=GND Pin=C6-2

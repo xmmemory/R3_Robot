@@ -1,0 +1,20 @@
+Removed Pin From Net: NetName=NetP2_3 Pin=P2-3
+Removed Pin From Net: NetName=GND Pin=P2-5
+Removed Pin From Net: NetName=GND Pin=P2-6
+Removed Pin From Net: NetName=BOOT0 Pin=R6-1
+Removed Pin From Net: NetName=NetP2_3 Pin=R6-2
+Added Component: Designator=R26(LC-0805_R)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_18102.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C17414"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetP2_3 Pin=P2-5
+Added Pin To Net: NetName=NetP2_3 Pin=P2-6
+Added Pin To Net: NetName=GND Pin=R6-1
+Added Pin To Net: NetName=BOOT0 Pin=R6-2
+Added Pin To Net: NetName=GND Pin=R26-1
+Added Pin To Net: NetName=BOOT1 Pin=R26-2
+Change Net Name : Old Net Name=NetP2_3 New Net Name=NetP2_5
+Added Member To Class: ClassName=R3D900 Member=Component R26 10KΩ (1002) ±1%

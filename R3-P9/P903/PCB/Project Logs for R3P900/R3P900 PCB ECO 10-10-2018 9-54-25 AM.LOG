@@ -1,0 +1,14 @@
+Added Component: Designator=K1(JDQ-SRD-5DC)
+Add component. Clean all parameters for all variants
+Added Component: Designator=U1(XL4016E1)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=+5 Pin=K1-1
+Added Pin To Net: NetName=NetD7_1 Pin=K1-2
+Added Pin To Net: NetName=Battery Pin=K1-3
+Added Pin To Net: NetName=+24_INCONTROL Pin=K1-4
+Added Pin To Net: NetName=Battery_IN Pin=U1-1
+Added Pin To Net: NetName=GND Pin=U1-2
+Added Pin To Net: NetName=+12A Pin=U1-3
+Added Pin To Net: NetName=GND Pin=U1-4
+Added Member To Class: ClassName=R3P900 Member=Component K1 Relay
+Added Member To Class: ClassName=R3P900 Member=Component U1 ADJµçÔ´Ä£¿é

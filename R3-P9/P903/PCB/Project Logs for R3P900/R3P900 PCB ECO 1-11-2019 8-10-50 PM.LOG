@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=+3.3 Pin=R14-2
+Removed Pin From Net: NetName=+3.3 Pin=R15-2
+Removed Pin From Net: NetName=+3.3 Pin=R19-2
+Removed Member From Class: ClassName=R3P900 Member=R14
+Removed Member From Class: ClassName=R3P900 Member=R15
+Removed Member From Class: ClassName=R3P900 Member=R19
+Added Pin To Net: NetName=+3.3 Pin=I2CͨѶ-4
+Added Pin To Net: NetName=+3.3 Pin=UART2ͨѶ-4
+Added Pin To Net: NetName=+3.3 Pin=UARTͨѶ-4

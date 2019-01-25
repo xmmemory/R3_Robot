@@ -1,0 +1,15 @@
+Added Component: Designator=电源(LC-0805_LED_S1)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_2668.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C2295"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+12 Pin=RESET-1
+Added Pin To Net: NetName=+12 Pin=RESET-1
+Added Pin To Net: NetName=GND Pin=RESET-2
+Added Pin To Net: NetName=GND Pin=RESET-2
+Added Pin To Net: NetName=NetR1_2 Pin=电源-A
+Added Pin To Net: NetName=GND Pin=电源-K
+Added Member To Class: ClassName=R3P900 Member=Component U1 ADJ电源模块
+Added Member To Class: ClassName=R3P900 Member=Component 电源 红灯 0805

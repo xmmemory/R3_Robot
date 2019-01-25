@@ -1,0 +1,8 @@
+Removed Pin From Net: NetName=In_Charge Pin=Download-2
+Removed Pin From Net: NetName=Charge Pin=Download-3
+Removed Pin From Net: NetName=Charge Pin=U4-9
+Removed Pin From Net: NetName=In_Charge Pin=U4-10
+Added Pin To Net: NetName=Charge Pin=Download-2
+Added Pin To Net: NetName=In_Charge Pin=Download-3
+Added Pin To Net: NetName=In_Charge Pin=U4-9
+Added Pin To Net: NetName=Charge Pin=U4-10

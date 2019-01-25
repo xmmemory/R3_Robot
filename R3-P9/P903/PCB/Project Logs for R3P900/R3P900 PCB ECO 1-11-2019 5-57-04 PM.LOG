@@ -1,0 +1,8 @@
+Removed Pin From Net: NetName=BM0 Pin=U1-18
+Removed Pin From Net: NetName=BM1 Pin=U1-19
+Removed Pin From Net: NetName=BM2 Pin=U1-20
+Removed Pin From Net: NetName=BM3 Pin=U1-39
+Added Pin To Net: NetName=BM0 Pin=U1-25
+Added Pin To Net: NetName=BM1 Pin=U1-26
+Added Pin To Net: NetName=BM2 Pin=U1-27
+Added Pin To Net: NetName=BM3 Pin=U1-28

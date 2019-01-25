@@ -1,0 +1,7 @@
+Added Component: Designator=RESET(KEY_M)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=RESET Pin=RESET-1
+Added Pin To Net: NetName=RESET Pin=RESET-1
+Added Pin To Net: NetName=GND Pin=RESET-2
+Added Pin To Net: NetName=GND Pin=RESET-2
+Added Member To Class: ClassName=R3D900 Member=Component RESET KEY_M

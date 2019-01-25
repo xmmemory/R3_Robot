@@ -1,0 +1,9 @@
+Change Component Footprint: Designator=C6 Old Footprint=LC-0805_C New Footprint=LC-1206_C
+Change Component Comment : Designator=C6 Old Comment=4.7uF (475) 10% 25V New Comment=4.7uF (475) 10% 50V
+Change component parameters: Designator = "C6"; Footprint = "LC-1206_C"; UniqueID = "\CDILTCLV"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_30577.html"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "1206"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SuppliersPartNumber"; Value = "C29823"; VariantName = "[No Variations]"

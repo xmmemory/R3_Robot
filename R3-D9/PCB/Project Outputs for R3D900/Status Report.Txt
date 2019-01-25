@@ -1,0 +1,24 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [R3D900.PrjPCB]
+   Generated File[R3D900.GTO]
+   Generated File[R3D900.GTP]
+   Generated File[R3D900.GTS]
+   Generated File[R3D900.GTL]
+   Generated File[R3D900.GBL]
+   Generated File[R3D900.GBS]
+   Generated File[R3D900.GM13]
+   Generated File[R3D900.GM15]
+   Generated File[R3D900.GKO]
+   Generated File[R3D900.GPT]
+   Generated File[R3D900.GPB]
+   Generated File[R3D900.GD1]
+   Generated File[R3D900.RUL]
+   Generated File[R3D900.EXTREP]
+   Generated File[R3D900.REP]
+
+
+Files Generated   : 15
+Documents Printed : 0
+
+Finished Output Generation At 7:30:21 PM On 12/7/2018

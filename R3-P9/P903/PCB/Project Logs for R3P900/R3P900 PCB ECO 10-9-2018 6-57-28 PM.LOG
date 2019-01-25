@@ -1,0 +1,16 @@
+Removed Pin From Net: NetName=GND Pin=U4-6
+Removed Pin From Net: NetName=GND Pin=U4-8
+Removed Pin From Net: NetName=Charge Pin=U4-10
+Removed Pin From Net: NetName=In_Charge Pin=U4-11
+Removed Pin From Net: NetName=U_RX Pin=U4-13
+Removed Pin From Net: NetName=U_TX Pin=U4-14
+Removed Pin From Net: NetName=+24 Pin=U4-15
+Change Component Footprint: Designator=U4 Old Footprint=DIP16 New Footprint=SOP16
+Change Component Comment : Designator=U4 Old Comment=STC15W408AD_SOP16_DIP16 New Comment=STC15W401AS_SOP16_DIP16
+Added Pin To Net: NetName=GND Pin=U4-7
+Added Pin To Net: NetName=Charge Pin=U4-9
+Added Pin To Net: NetName=In_Charge Pin=U4-10
+Added Pin To Net: NetName=U_RX Pin=U4-12
+Added Pin To Net: NetName=U_TX Pin=U4-13
+Added Pin To Net: NetName=+24 Pin=U4-14
+Added Member To Class: ClassName=R3P900 Member=Component D3 ºìµÆ 0805

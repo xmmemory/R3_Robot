@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=GND Pin=D1-1
+Removed Pin From Net: NetName=Battery Pin=D1-2
+Removed Member From Class: ClassName=R3P900 Member=D2
+Removed Member From Class: ClassName=R3P900 Member=D4
+Change Component Designator: OldDesignator=D2 NewDesignator=D1
+Change Component Designator: OldDesignator=D3 NewDesignator=³äµç
+Change Component Designator: OldDesignator=D4 NewDesignator=D3
+Change Net Name : Old Net Name=NetD3_A New Net Name=NetR1_2
+Added Member To Class: ClassName=R3P900 Member=Component ³äµç ºìµÆ 0805

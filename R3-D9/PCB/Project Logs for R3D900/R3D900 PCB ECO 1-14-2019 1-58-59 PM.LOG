@@ -1,0 +1,11 @@
+Removed Member From Class: ClassName=R3D900 Member=J?
+Added Component: Designator=RJ45(RJ45)
+Add component. Clean all parameters for all variants
+Added Component: Designator=RJ46(RJ45)
+Add component. Clean all parameters for all variants
+Added Member To Class: ClassName=R3D900 Member=Component P? HEADER_2X6
+Added Member To Class: ClassName=R3D900 Member=Component R? 120¦¸ (1200) ¡À1%
+Added Member To Class: ClassName=R3D900 Member=Component R? 120¦¸ (1200) ¡À1%
+Added Member To Class: ClassName=R3D900 Member=Component R? 120¦¸ (1200) ¡À1%
+Added Member To Class: ClassName=R3D900 Member=Component RJ45
+Added Member To Class: ClassName=R3D900 Member=Component RJ46 RJ45

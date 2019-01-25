@@ -1,0 +1,102 @@
+Removed Pin From Net: NetName=GND Pin=Left_OUT-1
+Removed Pin From Net: NetName=Left_2 Pin=Left_OUT-2
+Removed Pin From Net: NetName=Left_1 Pin=Left_OUT-3
+Removed Pin From Net: NetName=NetR?_1 Pin=R?-1
+Removed Pin From Net: NetName=NetR?_2 Pin=R?-2
+Removed Pin From Net: NetName=GND Pin=RIGHT_OUT-1
+Removed Pin From Net: NetName=Right_1 Pin=RIGHT_OUT-2
+Removed Pin From Net: NetName=Right_2 Pin=RIGHT_OUT-3
+Removed Pin From Net: NetName=NetR?_2 Pin=U?-1
+Removed Pin From Net: NetName=NetR?_1 Pin=U?-15
+Removed Member From Class: ClassName=R3D900 Member=Left_OUT
+Removed Member From Class: ClassName=R3D900 Member=RIGHT_OUT
+Change Component Designator: OldDesignator=P? NewDesignator=P4
+Change Component Designator: OldDesignator=P? NewDesignator=P5
+Change Component Designator: OldDesignator=R? NewDesignator=R21
+Change Component Designator: OldDesignator=R? NewDesignator=R22
+Change Component Designator: OldDesignator=R? NewDesignator=R23
+Change Component Designator: OldDesignator=R? NewDesignator=R24
+Change Component Designator: OldDesignator=U? NewDesignator=U2
+Added Component: Designator=R19(LC-0603_R)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_21903.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "0603"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C21189"; VariantName = "[No Variations]"
+Added Component: Designator=R20(LC-0603_R)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_21903.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "0603"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C21189"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=P4-2
+Added Pin To Net: NetName=NetR?_2 Pin=P4-8
+Added Pin To Net: NetName=GND Pin=P4-12
+Added Pin To Net: NetName=GND Pin=P5-2
+Added Pin To Net: NetName=NetR?_1 Pin=P5-8
+Added Pin To Net: NetName=GND Pin=P5-12
+Added Pin To Net: NetName=+5 Pin=R19-2
+Added Pin To Net: NetName=+5 Pin=R20-2
+Added Pin To Net: NetName=CAN_H Pin=RJ45-1
+Added Pin To Net: NetName=CAN_L Pin=RJ45-2
+Added Pin To Net: NetName=GND Pin=RJ45-3
+Added Pin To Net: NetName=CAN_H Pin=RJ46-1
+Added Pin To Net: NetName=CAN_L Pin=RJ46-2
+Added Pin To Net: NetName=GND Pin=RJ46-3
+Added Pin To Net: NetName=Left_1 Pin=U2-3
+Added Pin To Net: NetName=Left_2 Pin=U2-5
+Added Pin To Net: NetName=Right_2 Pin=U2-11
+Added Pin To Net: NetName=Right_1 Pin=U2-13
+Added Pin To Net: NetName=+5 Pin=U2-16
+Change Net Name : Old Net Name=NetR?_1 New Net Name=Z-2
+Change Net Name : Old Net Name=NetR?_2 New Net Name=Z-1
+Added Pin To Net: NetName=A+1 Pin=P4-3
+Added Pin To Net: NetName=A+1 Pin=R21-1
+Added Pin To Net: NetName=A+1 Pin=U2-2
+Added Net: Name=A+1
+Added Pin To Net: NetName=A+2 Pin=P5-3
+Added Pin To Net: NetName=A+2 Pin=R24-1
+Added Pin To Net: NetName=A+2 Pin=U2-10
+Added Net: Name=A+2
+Added Pin To Net: NetName=A-1 Pin=P4-4
+Added Pin To Net: NetName=A-1 Pin=R21-2
+Added Pin To Net: NetName=A-1 Pin=U2-1
+Added Net: Name=A-1
+Added Pin To Net: NetName=A-2 Pin=P5-4
+Added Pin To Net: NetName=A-2 Pin=R24-2
+Added Pin To Net: NetName=A-2 Pin=U2-9
+Added Net: Name=A-2
+Added Pin To Net: NetName=B+1 Pin=P4-5
+Added Pin To Net: NetName=B+1 Pin=R23-2
+Added Pin To Net: NetName=B+1 Pin=U2-6
+Added Net: Name=B+1
+Added Pin To Net: NetName=B+2 Pin=P5-5
+Added Pin To Net: NetName=B+2 Pin=R22-2
+Added Pin To Net: NetName=B+2 Pin=U2-14
+Added Net: Name=B+2
+Added Pin To Net: NetName=B-1 Pin=P4-6
+Added Pin To Net: NetName=B-1 Pin=R23-1
+Added Pin To Net: NetName=B-1 Pin=U2-7
+Added Net: Name=B-1
+Added Pin To Net: NetName=B-2 Pin=P5-6
+Added Pin To Net: NetName=B-2 Pin=R22-1
+Added Pin To Net: NetName=B-2 Pin=U2-15
+Added Net: Name=B-2
+Added Pin To Net: NetName=NetP4_1 Pin=P4-1
+Added Pin To Net: NetName=NetP4_1 Pin=R19-1
+Added Net: Name=NetP4_1
+Added Pin To Net: NetName=NetP5_1 Pin=P5-1
+Added Pin To Net: NetName=NetP5_1 Pin=R20-1
+Added Net: Name=NetP5_1
+Added Pin To Net: NetName=Z+1 Pin=P4-7
+Added Net: Name=Z+1
+Added Pin To Net: NetName=Z+2 Pin=P5-7
+Added Net: Name=Z+2
+Added Member To Class: ClassName=R3D900 Member=Component P4 HEADER_2X6
+Added Member To Class: ClassName=R3D900 Member=Component R19 0Ω (0R0) ±1%
+Added Member To Class: ClassName=R3D900 Member=Component R20 0Ω (0R0) ±1%
+Added Member To Class: ClassName=R3D900 Member=Component R21 120Ω (1200) ±1%
+Added Member To Class: ClassName=R3D900 Member=Component R22 120Ω (1200) ±1%
+Added Member To Class: ClassName=R3D900 Member=Component R24 120Ω (1200) ±1%

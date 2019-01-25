@@ -1,0 +1,30 @@
+Added Component: Designator=I2C通讯(HDR1X4)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=UART通讯(HDR1X4)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=I2C通讯-1
+Added Pin To Net: NetName=+3.3 Pin=I2C通讯-4
+Added Pin To Net: NetName=GND Pin=UART通讯-1
+Added Pin To Net: NetName=U_RX Pin=UART通讯-2
+Added Pin To Net: NetName=U_TX Pin=UART通讯-3
+Added Pin To Net: NetName=+3.3 Pin=UART通讯-4
+Added Pin To Net: NetName=IIC_SCL Pin=I2C通讯-3
+Added Pin To Net: NetName=IIC_SCL Pin=U1-42
+Added Net: Name=IIC_SCL
+Added Pin To Net: NetName=IIC_SDA Pin=I2C通讯-2
+Added Pin To Net: NetName=IIC_SDA Pin=U1-43
+Added Net: Name=IIC_SDA
+Added Member To Class: ClassName=R3S602 Member=Component C1 100nF(104) 10% 50V
+Added Member To Class: ClassName=R3S602 Member=Component DC_IN2 Header 2
+Added Member To Class: ClassName=R3S602 Member=Component I2C通讯 Header 4
+Added Member To Class: ClassName=R3S602 Member=Component L1 47uH ±10%
+Added Member To Class: ClassName=R3S602 Member=Component R1 10KΩ (1002) ±1%
+Added Member To Class: ClassName=R3S602 Member=Component R2 3.3KΩ (3301) ±1%
+Added Member To Class: ClassName=R3S602 Member=Component R3 1.5KΩ (1501) ±1%
+Added Member To Class: ClassName=R3S602 Member=Component UART通讯 Header 4

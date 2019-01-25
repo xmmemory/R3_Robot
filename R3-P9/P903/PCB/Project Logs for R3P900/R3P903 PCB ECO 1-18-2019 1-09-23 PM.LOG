@@ -1,0 +1,16 @@
+Removed Pin From Net: NetName=BM0 Pin=参数调节-1
+Removed Pin From Net: NetName=BM1 Pin=参数调节-2
+Removed Pin From Net: NetName=BM2 Pin=参数调节-3
+Removed Pin From Net: NetName=BM3 Pin=参数调节-4
+Removed Pin From Net: NetName=GND Pin=参数调节-5
+Removed Pin From Net: NetName=GND Pin=参数调节-6
+Removed Pin From Net: NetName=GND Pin=参数调节-7
+Removed Pin From Net: NetName=GND Pin=参数调节-8
+Added Pin To Net: NetName=GND Pin=参数调节-1
+Added Pin To Net: NetName=GND Pin=参数调节-2
+Added Pin To Net: NetName=GND Pin=参数调节-3
+Added Pin To Net: NetName=GND Pin=参数调节-4
+Added Pin To Net: NetName=BM0 Pin=参数调节-5
+Added Pin To Net: NetName=BM1 Pin=参数调节-6
+Added Pin To Net: NetName=BM2 Pin=参数调节-7
+Added Pin To Net: NetName=BM3 Pin=参数调节-8

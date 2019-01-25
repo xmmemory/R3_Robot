@@ -1,0 +1,3 @@
+Change Component Designator: OldDesignator=D1 NewDesignator=IN
+Change Component Designator: OldDesignator=D2 NewDesignator=OUT
+Added Member To Class: ClassName=R3P900 Member=Component IN Diode 11DQ03

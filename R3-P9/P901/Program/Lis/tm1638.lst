@@ -1,0 +1,276 @@
+C51 COMPILER V9.06   TM1638                                                                04/18/2018 17:23:05 PAGE 1   
+
+
+C51 COMPILER V9.06, COMPILATION OF MODULE TM1638
+OBJECT MODULE PLACED IN .\Obj\tm1638.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Application\Source\tm1638.c BROWSE INCDIR(.\Application\Header) DEBUG OBJEC
+                    -TEXTEND PRINT(.\Lis\tm1638.lst) OBJECT(.\Obj\tm1638.obj)
+
+line level    source
+
+   1           //包含该头文件，可以使用_nop_()函数
+   2           #include <intrins.h>
+   3           #include "tm1638.h"
+   4          
+   5          //共阴数码管段码表
+   6           unsigned char code DispCode[]={0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,                                                                                                                                                      
+   7                                    //      0    1    2    3    4    5   6    7    8    9   
+   8                                                                  0x77,0x7C,0x39,0x5E,0x79,0x71,0x3D,0x76,0x74,0x30,      
+   9                                                    //      A        b    C        d        E        F   G        H        h        I     
+  10                                                          0x10,0x1E,0x38,0x54,0x5C,0x73,0x67,0x50,0x31,0x78,
+  11                                                    //      i    J    L    n    o    P   q        r    R    t             
+  12                                                              0x3E,0x1C,0x40,0x48,0x08,0x00};
+  13                                                    //      U        V   一    二   _    灭
+  14          //显示缓冲区
+  15          unsigned char DispBuf[8]={0};
+  16          
+  17          //引用外部函数
+  18          extern void Delay_ms(unsigned int ms);
+  19          
+  20          /***********************************************
+  21          函数名称：Delay_us
+  22          功    能：STC 1T单片机1us延时程序
+  23          入口参数：us:延时的微秒数
+  24          返 回 值：无    
+  25          备    注：外部时钟11.0592MHz
+  26          ************************************************/
+  27          void Delay_us(unsigned int us)
+  28          {
+  29   1              while( us--)
+  30   1              {
+  31   2              _nop_();
+  32   2              }             
+  33   1      }
+  34          /***********************************************
+  35          函数名称：TM1638_WriteByte
+  36          功    能：写一个字节数据到TM1638，
+  37          入口参数：dat:写入的数据
+  38          返 回 值：无    
+  39          备    注：详见数据手册时序图。
+  40          ************************************************/
+  41          void TM1638_SendByte(unsigned char dat)
+  42          {
+  43   1              unsigned char i;
+  44   1              for(i=0;i<8;i++)
+  45   1              {
+  46   2                      Clr_TM1638_CLK();         //置低时钟线
+  47   2                      Delay_us(1);              //延时
+  48   2                      if( (dat&0x01)!=0 )       //判断数据最低位
+  49   2                      {
+  50   3                              Set_TM1638_DIO(); //置高数据线
+  51   3                      }
+  52   2                      else
+  53   2                      {
+  54   3                              Clr_TM1638_DIO(); //置低数据线
+C51 COMPILER V9.06   TM1638                                                                04/18/2018 17:23:05 PAGE 2   
+
+  55   3                      }
+  56   2                      Set_TM1638_CLK();         //置高时钟线
+  57   2                      Delay_us(1);              //延时
+  58   2                      dat=dat>>1;                       //数据左移
+  59   2              }
+  60   1      }
+  61          /***********************************************
+  62          函数名称：TM1638_WriteCMD
+  63          功    能：写一个命令数据到TM1638，
+  64          入口参数：cmd:写入的命令
+  65          返 回 值：无    
+  66          备    注：详见数据手册时序图。
+  67          ************************************************/
+  68          void TM1638_WriteCMD(unsigned char cmd)
+  69          {       
+  70   1              Clr_TM1638_STB();                 //置低选择线
+  71   1              TM1638_SendByte(cmd);     //写入命令
+  72   1              Set_TM1638_STB();                 //置高选择线
+  73   1      }
+  74          /***********************************************
+  75          函数名称：TM1638_WriteReg
+  76          功    能：写一个字节数据到TM1638的寄存器，
+  77          入口参数：
+  78                            add：写入的寄存器地址 
+  79                            dat:写入的数据
+  80          返 回 值：无    
+  81          备    注：详见数据手册时序图。
+  82          ************************************************/
+  83          void TM1638_WriteReg(unsigned char add,unsigned char dat)
+  84          {
+  85   1              Clr_TM1638_STB();                  //置低选择线
+  86   1              TM1638_SendByte(add);      //写入地址
+  87   1              TM1638_SendByte(dat);      //写入数据
+  88   1              Set_TM1638_STB();                  //置高选择线
+  89   1      }
+  90          /***********************************************
+  91          函数名称：TM1638_Clear
+  92          功    能：TM1638清除显示
+  93          入口参数：无
+  94          返 回 值：无    
+  95          备    注：无
+  96          ************************************************/
+  97          void TM1638_Clear(void)
+  98          {       
+  99   1              //写入数据0x00则全部熄灭不显示
+ 100   1              TM1638_WriteReg( DisAdd1,0x00 );
+ 101   1              TM1638_WriteReg( DisAdd2,0x00 );
+ 102   1              TM1638_WriteReg( DisAdd3,0x00 );
+ 103   1              TM1638_WriteReg( DisAdd4,0x00 );
+ 104   1              TM1638_WriteReg( DisAdd5,0x00 );
+ 105   1              TM1638_WriteReg( DisAdd6,0x00 );
+ 106   1              TM1638_WriteReg( DisAdd7,0x00 );
+ 107   1              TM1638_WriteReg( DisAdd8,0x00 );                
+ 108   1      }
+ 109          /***********************************************
+ 110          函数名称：TM1638_Init
+ 111          功    能：TM1638芯片初始化函数。
+ 112          入口参数：无
+ 113          返 回 值：无    
+ 114          备    注：无
+ 115          ************************************************/
+ 116          void TM1638_Init(void)
+C51 COMPILER V9.06   TM1638                                                                04/18/2018 17:23:05 PAGE 3   
+
+ 117          {
+ 118   1              Delay_ms(10);                             //延时等待上电稳定
+ 119   1      
+ 120   1              Set_TM1638_DIO();                         //端口置高
+ 121   1              Set_TM1638_CLK();
+ 122   1              Set_TM1638_STB();
+ 123   1      
+ 124   1              TM1638_WriteCMD(DisRamFixed);//设置固定地址方式写显存
+ 125   1              TM1638_Clear();                          //清除显示
+ 126   1              TM1638_WriteCMD(DisCtr);         //显示控制，显示开，亮度2/16   
+ 127   1      }
+ 128          /***********************************************
+ 129          函数名称：ToDisplayBuf
+ 130          功    能：把待显示的数据放入显示缓冲区
+ 131          入口参数：High_Dat：高四位数码管数据
+ 132                            Low_Dat： 低四位数码管数据
+ 133          返 回 值：无    
+ 134          备    注：无
+ 135          ************************************************/
+ 136          void ToDisplayBuf(unsigned int High_Dat,unsigned int Low_Dat)
+ 137          {
+ 138   1              DispBuf[0]=High_Dat%10000/1000;  //高四位千位
+ 139   1              DispBuf[1]=High_Dat%1000/100;    //高四位百位
+ 140   1              DispBuf[2]=High_Dat%100/10;              //高四位十位
+ 141   1              DispBuf[3]=High_Dat%10;                  //高四位个位
+ 142   1      
+ 143   1          DispBuf[4]=Low_Dat%10000/1000;       //低四位千位
+ 144   1              DispBuf[5]=Low_Dat%1000/100;     //低四位百位
+ 145   1              DispBuf[6]=Low_Dat%100/10;               //低四位十位
+ 146   1              DispBuf[7]=Low_Dat%10;                   //低四位个位
+ 147   1              
+ 148   1              if( (DispBuf[0]==0)&&(DispBuf[1]==0)&&(DispBuf[2]==0) )
+ 149   1              {
+ 150   2                      DispBuf[0]=35;                          //高位消隐
+ 151   2                      DispBuf[1]=35;                          //次高位消隐
+ 152   2                      DispBuf[2]=35;                          //次次高位消隐
+ 153   2              }
+ 154   1              else if( (DispBuf[0]==0)&&(DispBuf[1]==0) )
+ 155   1              {
+ 156   2                      DispBuf[0]=35;                          //高位消隐
+ 157   2                      DispBuf[1]=35;                          //次高位消隐
+ 158   2              }
+ 159   1              else if(DispBuf[0]==0)
+ 160   1              {
+ 161   2                      DispBuf[0]=35;                          //高位消隐
+ 162   2              }       
+ 163   1              
+ 164   1              if( (DispBuf[4]==0)&&(DispBuf[5]==0)&&(DispBuf[6]==0) )
+ 165   1              {
+ 166   2                      DispBuf[4]=35;                          //高位消隐
+ 167   2                      DispBuf[5]=35;                          //次高位消隐
+ 168   2                      DispBuf[6]=35;                          //次次高位消隐
+ 169   2              }
+ 170   1              else if( (DispBuf[4]==0)&&(DispBuf[5]==0) )
+ 171   1              {
+ 172   2                      DispBuf[4]=35;                          //高位消隐
+ 173   2                      DispBuf[5]=35;                          //次高位消隐
+ 174   2              }
+ 175   1              else if(DispBuf[4]==0)
+ 176   1              {
+ 177   2                      DispBuf[4]=35;                          //高位消隐
+ 178   2              }
+C51 COMPILER V9.06   TM1638                                                                04/18/2018 17:23:05 PAGE 4   
+
+ 179   1              //写入八位数码管显示数据
+ 180   1              TM1638_WriteReg( DisAdd1,DispCode[DispBuf[0]] );
+ 181   1              TM1638_WriteReg( DisAdd2,DispCode[DispBuf[1]] );
+ 182   1              TM1638_WriteReg( DisAdd3,DispCode[DispBuf[2]] );
+ 183   1              TM1638_WriteReg( DisAdd4,DispCode[DispBuf[3]] );
+ 184   1              TM1638_WriteReg( DisAdd5,DispCode[DispBuf[4]] );
+ 185   1              TM1638_WriteReg( DisAdd6,DispCode[DispBuf[5]] );
+ 186   1              TM1638_WriteReg( DisAdd7,DispCode[DispBuf[6]] );
+ 187   1              TM1638_WriteReg( DisAdd8,DispCode[DispBuf[7]] );                
+ 188   1      }
+ 189          /***********************************************
+ 190          函数名称：ToDisplayHello
+ 191          功    能：把欢迎信息放入显示缓冲区
+ 192          入口参数：无
+ 193          返 回 值：无    
+ 194          备    注：在数码管中显示HELLO
+ 195          ************************************************/
+ 196          void ToDisplayHello(void)
+ 197          {
+ 198   1              DispBuf[0]=35;                  //DispCode[35]:熄灭
+ 199   1              DispBuf[1]=17;                  //DispCode[17]:H
+ 200   1              DispBuf[2]=14;                  //DispCode[14]:E
+ 201   1              DispBuf[3]=22;                  //DispCode[22]:L
+ 202   1              DispBuf[4]=22;                  //DispCode[22]:L
+ 203   1              DispBuf[5]=0;                   //DispCode[0]:O
+ 204   1              DispBuf[6]=35;                  //DispCode[35]:熄灭
+ 205   1              DispBuf[7]=35;                  //DispCode[35]:熄灭
+ 206   1      
+ 207   1              //写入八位数码管显示数据
+ 208   1              TM1638_WriteReg( DisAdd1,DispCode[DispBuf[0]] );
+ 209   1              TM1638_WriteReg( DisAdd2,DispCode[DispBuf[1]] );
+ 210   1              TM1638_WriteReg( DisAdd3,DispCode[DispBuf[2]] );
+ 211   1              TM1638_WriteReg( DisAdd4,DispCode[DispBuf[3]] );
+ 212   1              TM1638_WriteReg( DisAdd5,DispCode[DispBuf[4]] );
+ 213   1              TM1638_WriteReg( DisAdd6,DispCode[DispBuf[5]] );
+ 214   1              TM1638_WriteReg( DisAdd7,DispCode[DispBuf[6]] );
+ 215   1              TM1638_WriteReg( DisAdd8,DispCode[DispBuf[7]] );
+ 216   1      }
+ 217          /***********************************************
+ 218          函数名称：ToDisplay__
+ 219          功    能：数码管显示--
+ 220          入口参数：无
+ 221          返 回 值：无    
+ 222          备    注：无
+ 223          ************************************************/
+ 224          void ToDisplay__(void)
+ 225          {
+ 226   1              DispBuf[0]=2;                   //DispCode[2]:2
+ 227   1              DispBuf[1]=32;                  //DispCode[32]:-
+ 228   1              DispBuf[2]=32;                  //DispCode[32]:-
+ 229   1              DispBuf[3]=32;                  //DispCode[32]:-
+ 230   1              DispBuf[4]=32;                  //DispCode[32]:-
+ 231   1              DispBuf[5]=32;                  //DispCode[32]:-
+ 232   1              DispBuf[6]=32;                  //DispCode[32]:-
+ 233   1              DispBuf[7]=32;                  //DispCode[32]:-
+ 234   1      
+ 235   1              //写入八位数码管显示数据
+ 236   1              TM1638_WriteReg( DisAdd1,DispCode[DispBuf[0]] );
+ 237   1              TM1638_WriteReg( DisAdd2,DispCode[DispBuf[1]] );
+ 238   1              TM1638_WriteReg( DisAdd3,DispCode[DispBuf[2]] );
+ 239   1              TM1638_WriteReg( DisAdd4,DispCode[DispBuf[3]] );
+ 240   1              TM1638_WriteReg( DisAdd5,DispCode[DispBuf[4]] );
+C51 COMPILER V9.06   TM1638                                                                04/18/2018 17:23:05 PAGE 5   
+
+ 241   1              TM1638_WriteReg( DisAdd6,DispCode[DispBuf[5]] );
+ 242   1              TM1638_WriteReg( DisAdd7,DispCode[DispBuf[6]] );
+ 243   1              TM1638_WriteReg( DisAdd8,DispCode[DispBuf[7]] );
+ 244   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    585    ----
+   CONSTANT SIZE    =     36    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      8       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

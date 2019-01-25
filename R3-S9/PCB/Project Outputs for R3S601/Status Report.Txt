@@ -1,0 +1,26 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [R3S601.PrjPCB]
+   Generated File[R3S601.GTO]
+   Generated File[R3S601.GTP]
+   Generated File[R3S601.GTS]
+   Generated File[R3S601.GTL]
+   Generated File[R3S601.GBL]
+   Generated File[R3S601.GBS]
+   Generated File[R3S601.GBP]
+   Generated File[R3S601.GBO]
+   Generated File[R3S601.GM13]
+   Generated File[R3S601.GM15]
+   Generated File[R3S601.GKO]
+   Generated File[R3S601.GPT]
+   Generated File[R3S601.GPB]
+   Generated File[R3S601.GD1]
+   Generated File[R3S601.RUL]
+   Generated File[R3S601.EXTREP]
+   Generated File[R3S601.REP]
+
+
+Files Generated   : 17
+Documents Printed : 0
+
+Finished Output Generation At 7:27:30 PM On 12/7/2018

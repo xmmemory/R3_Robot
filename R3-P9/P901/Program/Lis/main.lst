@@ -1,0 +1,286 @@
+C51 COMPILER V9.54   MAIN                                                                  05/09/2018 14:34:07 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Obj\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Application\Source\main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\Application\
+                    -Header) DEBUG OBJECTEXTEND PRINT(.\Lis\main.lst) TABS(2) OBJECT(.\Obj\main.obj)
+
+line level    source
+
+   1          /************************************************
+   2           * 文件描述     : 串口2---电源控制板
+   3           * 程序文件     : main.c               
+   4           * 版    本     : 2.0
+   5           * 作    者     : y
+   6           * 日    期     : 2018.04.18
+   7           * 芯    片     : stc15w204s
+   8           * 时    钟   ：内部11.0592MHz
+   9           * 开发环境   ：Keil uVision4 C51 V9.06
+  10           ************************************************/
+  11           //文件包含
+  12           #include "config.h"
+  13           #include "GPIO.h"
+  14           #include "USART1.h"
+  15           #include "timer.h"
+  16          
+  17           //宏定义
+  18          // #define   CHARTAST     1   //字符任务
+  19          // #define   NUMTAST      2   //数字任务
+  20          // #define   MENUTAST     3   //菜单任务
+  21           
+  22           //定义位变量
+  23           sbit BEEP=P1^0;      //操作BEEP
+  24           sbit LED = P1^1;     //操作LED
+  25           sbit LOCK=P3^2;      //操作LOCK
+  26           sbit Card=P1^2;      //操作OUT1
+  27           sbit Keyboard=P1^3;    //操作OUT2
+  28           sbit Identity=P1^4;    //操作OUT3
+  29           sbit Reserve=P1^5;   //操作OUT4
+  30           sbit OUT3=P1^6;      //操作OUT3
+  31           sbit OUT4=P1^7;      //操作OUT4
+  32           
+  33           //全局变量
+  34           bit HaveTast=0;          //任务标记
+  35           unsigned char Uart2Cmd;    //串口命令
+  36          
+  37           unsigned int Lock_count;
+  38           unsigned int LED_Count;
+  39          
+  40           //函数声明
+  41           void Delay_ms(unsigned int ms);
+  42          
+  43           /******************** IO配置函数 **************************/
+  44           void GPIO_config(void)
+  45           { 
+  46   1        GPIO_InitTypeDef  GPIO_InitStructure;   //结构定义
+  47   1        GPIO_InitStructure.Pin  = GPIO_Pin_All;   //指定要初始化的IO, GPIO_Pin_0 ~ GPIO_Pin_7, 或操作
+  48   1        GPIO_InitStructure.Mode = GPIO_PullUp;    //指定IO的输入或输出方式,GPIO_PullUp,GPIO_HighZ,GPIO_OUT_OD,GPIO_
+             -OUT_PP
+  49   1        GPIO_Inilize(GPIO_P1,&GPIO_InitStructure);  //初始化P1
+  50   1      
+  51   1        GPIO_InitStructure.Pin  = GPIO_Pin_0;   //指定要初始化的IO, GPIO_Pin_0 ~ GPIO_Pin_7, 或操作
+  52   1        GPIO_InitStructure.Mode = GPIO_OUT_PP;    //指定IO的输入或输出方式,GPIO_PullUp,GPIO_HighZ,GPIO_OUT_OD,GPIO_
+             -OUT_PP
+C51 COMPILER V9.54   MAIN                                                                  05/09/2018 14:34:07 PAGE 2   
+
+  53   1        GPIO_Inilize(GPIO_P1,&GPIO_InitStructure);  //初始化——BEEP
+  54   1        
+  55   1        GPIO_InitStructure.Pin  = GPIO_Pin_All;   //指定要初始化的IO, GPIO_Pin_0 ~ GPIO_Pin_7, 或操作
+  56   1        GPIO_InitStructure.Mode = GPIO_PullUp;    //指定IO的输入或输出方式,GPIO_PullUp,GPIO_HighZ,GPIO_OUT_OD,GPIO_
+             -OUT_PP
+  57   1        GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);  //初始化——LOCK
+  58   1      
+  59   1        GPIO_InitStructure.Pin  = GPIO_Pin_All;   //指定要初始化的IO, GPIO_Pin_0 ~ GPIO_Pin_7, 或操作
+  60   1        GPIO_InitStructure.Mode = GPIO_PullUp;    //指定IO的输入或输出方式,GPIO_PullUp,GPIO_HighZ,GPIO_OUT_OD,GPIO_
+             -OUT_PP
+  61   1        GPIO_Inilize(GPIO_P5,&GPIO_InitStructure);  //初始化——LOCK
+  62   1       }
+  63           /*************  串口1初始化函数 *****************/
+  64          void  UART_config(void)
+  65          {
+  66   1        COMx_InitDefine   COMx_InitStructure;         //结构定义
+  67   1        COMx_InitStructure.UART_Mode      = UART_8bit_BRTx;   //模式,       UART_ShiftRight,UART_8bit_BRTx,UART_9b
+             -it,UART_9bit_BRTx
+  68   1        COMx_InitStructure.UART_BRT_Use   = BRT_Timer2;     //使用波特率,   BRT_Timer1, BRT_Timer2 (注意: 串口2固定
+             -使用BRT_Timer2)
+  69   1        COMx_InitStructure.UART_BaudRate  = 9600ul;     //波特率, 一般 110 ~ 115200
+  70   1        COMx_InitStructure.UART_RxEnable  = ENABLE;       //接收允许,   ENABLE或DISABLE
+  71   1        COMx_InitStructure.BaudRateDouble = DISABLE;      //波特率加倍, ENABLE或DISABLE
+  72   1        COMx_InitStructure.UART_Interrupt = ENABLE;       //中断允许,   ENABLE或DISABLE
+  73   1        COMx_InitStructure.UART_Polity    = PolityLow;      //中断优先级, PolityLow,PolityHigh
+  74   1        COMx_InitStructure.UART_P_SW      = UART1_SW_P36_P37; //切换端口,   UART1_SW_P30_P31,UART1_SW_P36_P37,UAR
+             -T1_SW_P16_P17(必须使用内部时钟)
+  75   1        COMx_InitStructure.UART_RXD_TXD_Short = DISABLE;    //内部短路RXD与TXD, 做中继, ENABLE,DISABLE
+  76   1        USART_Configuration(USART1, &COMx_InitStructure);   //初始化串口1 USART1,USART2
+  77   1      
+  78   1        PrintString1("RAY_IOBD_L63130_START!\r\n"); //SUART1发送一个字符串
+  79   1      }
+  80          /************************ 定时器配置 ****************************/
+  81          void  Timer_config(void)
+  82          {
+  83   1        TIM_InitTypeDef   TIM_InitStructure;          //结构定义
+  84   1        TIM_InitStructure.TIM_Mode      = TIM_16BitAutoReload;  //指定工作模式,   TIM_16BitAutoReload,TIM_16Bit,TI
+             -M_8BitAutoReload,TIM_16BitAutoReloadNoMask
+  85   1        TIM_InitStructure.TIM_Polity    = PolityLow;      //指定中断优先级, PolityHigh,PolityLow
+  86   1        TIM_InitStructure.TIM_Interrupt = ENABLE;       //中断是否允许,   ENABLE或DISABLE
+  87   1        TIM_InitStructure.TIM_ClkSource = TIM_CLOCK_12T;    //指定时钟源,     TIM_CLOCK_1T,TIM_CLOCK_12T,TIM_CLOCK_
+             -Ext
+  88   1        TIM_InitStructure.TIM_ClkOut    = DISABLE;        //是否输出高速脉冲, ENABLE或DISABLE
+  89   1        TIM_InitStructure.TIM_Value     = 65536UL - (MAIN_Fosc / (50*12));    //初值    ---20ms
+  90   1        TIM_InitStructure.TIM_Run       = ENABLE;       //是否初始化后启动定时器, ENABLE或DISABLE
+  91   1        Timer_Inilize(Timer0,&TIM_InitStructure);       //初始化Timer0    Timer0,Timer1,Timer2
+  92   1      
+  93   1      //  TIM_InitStructure.TIM_Mode      = TIM_16BitAutoReload;  //指定工作模式,   TIM_16BitAutoReload,TIM_16Bit,
+             -TIM_8BitAutoReload,TIM_16BitAutoReloadNoMask
+  94   1      //  TIM_InitStructure.TIM_Polity    = PolityLow;      //指定中断优先级, PolityHigh,PolityLow
+  95   1      //  TIM_InitStructure.TIM_Interrupt = ENABLE;       //中断是否允许,   ENABLE或DISABLE
+  96   1      //  TIM_InitStructure.TIM_ClkSource = TIM_CLOCK_12T;    //指定时钟源, TIM_CLOCK_1T,TIM_CLOCK_12T,TIM_CLOCK_Ex
+             -t
+  97   1      //  TIM_InitStructure.TIM_ClkOut    = DISABLE;        //是否输出高速脉冲, ENABLE或DISABLE
+  98   1      //  TIM_InitStructure.TIM_Value     = 65536UL - (MAIN_Fosc / (50*12));    //初值
+  99   1      //  TIM_InitStructure.TIM_Run       = ENABLE;       //是否初始化后启动定时器, ENABLE或DISABLE
+ 100   1      //  Timer_Inilize(Timer1,&TIM_InitStructure);       //初始化Timer1    Timer0,Timer1,Timer2
+ 101   1      //
+ 102   1      //  TIM_InitStructure.TIM_Interrupt = ENABLE;       //中断是否允许,   ENABLE或DISABLE. (注意: Timer2固定为16位
+             -自动重装, 中断固定为低优先级)
+ 103   1      //  TIM_InitStructure.TIM_ClkSource = TIM_CLOCK_12T;    //指定时钟源,     TIM_CLOCK_1T,TIM_CLOCK_12T,TIM_CLOC
+             -K_Ext
+C51 COMPILER V9.54   MAIN                                                                  05/09/2018 14:34:07 PAGE 3   
+
+ 104   1      //  TIM_InitStructure.TIM_ClkOut    = DISABLE;        //是否输出高速脉冲, ENABLE或DISABLE
+ 105   1      //  TIM_InitStructure.TIM_Value     = 65536UL - (MAIN_Fosc / (50*6*5));   //初值   ---50ms
+ 106   1      //  TIM_InitStructure.TIM_Run       = ENABLE;       //是否初始化后启动定时器, ENABLE或DISABLE
+ 107   1      //  Timer_Inilize(Timer2,&TIM_InitStructure);       //初始化Timer2    Timer0,Timer1,Timer2
+ 108   1      }
+ 109          
+ 110           /******************** 主函数 **************************/
+ 111           void main(void)
+ 112           {
+ 113   1         u8 i;
+ 114   1         UART_config();
+ 115   1         Timer_config();
+ 116   1         EA = 1;
+ 117   1      
+ 118   1         GPIO_config();
+ 119   1         LED = 0;  
+ 120   1         Delay_ms(500);
+ 121   1         BEEP = 0;
+ 122   1         Delay_ms(500);
+ 123   1         LED = 1;
+ 124   1         
+ 125   1         WDT_CONTR = 0x3e;      //WatchDogInit
+ 126   1      
+ 127   1        while (1)
+ 128   1        {       
+ 129   2          Delay_ms(1);
+ 130   2      
+ 131   2          if(LED_Count) LED_Count--;
+ 132   2          else 
+ 133   2          {
+ 134   3            LED_Count = 1000;
+ 135   3            LED = ~LED;
+ 136   3          }  
+ 137   2      
+ 138   2          WDT_CONTR |= 0x10;    //WatchDogClear
+ 139   2      
+ 140   2          if(COM1.RX_TimeOut > 0)   //超时计数
+ 141   2          {
+ 142   3            if(--COM1.RX_TimeOut == 0)
+ 143   3            {
+ 144   4              if(COM1.RX_Cnt > 0)
+ 145   4              {
+ 146   5      //          if(RX1_Buffer[0] == 'A' && RX1_Buffer[1] == 'A' && RX1_Buffer[2] == 'F' && RX1_Buffer[3] == 'F')
+ 147   5      //          {
+ 148   5      //            for(i=0; i<COM1.RX_Cnt; i++)  TX1_write2buff(RX1_Buffer[i]);  //收到的数据原样返回
+ 149   5      //          }
+ 150   5                if(RX1_Buffer[0] == 'A' || RX1_Buffer[3] == 'T')
+ 151   5                {
+ 152   6                  if(RX1_Buffer[0] == 'A' && RX1_Buffer[1] == '1' && RX1_Buffer[2] == '1' && RX1_Buffer[3] == 'T')
+ 153   6                  {                             
+ 154   7                    Lock_count = 400;
+ 155   7                    LOCK = 0;
+ 156   7                    TR0 = 1;  }
+ 157   6                  else if(RX1_Buffer[0] == 'A' && RX1_Buffer[1] == '1' && RX1_Buffer[2] == '0' && RX1_Buffer[3] == 'T'
+             -)
+ 158   6                  { 
+ 159   7                    LOCK = 1; }
+ 160   6                  else if(RX1_Buffer[0] == 'A' && RX1_Buffer[1] == '2' && RX1_Buffer[2] == '1' && RX1_Buffer[3] == 'T'
+             -)
+ 161   6                  {
+ 162   7                    Card = 0; }
+ 163   6                  else if(RX1_Buffer[0] == 'A' && RX1_Buffer[1] == '2' && RX1_Buffer[2] == '0' && RX1_Buffer[3] == 'T'
+C51 COMPILER V9.54   MAIN                                                                  05/09/2018 14:34:07 PAGE 4   
+
+             -)
+ 164   6                  {
+ 165   7                    Card = 1; }
+ 166   6                  else if(RX1_Buffer[0] == 'A' && RX1_Buffer[1] == '3' && RX1_Buffer[2] == '1' && RX1_Buffer[3] == 'T'
+             -)
+ 167   6                  {
+ 168   7                    Keyboard = 0; }
+ 169   6                  else if(RX1_Buffer[0] == 'A' && RX1_Buffer[1] == '3' && RX1_Buffer[2] == '0' && RX1_Buffer[3] == 'T'
+             -)
+ 170   6                  {
+ 171   7                    Keyboard = 1; }
+ 172   6                  else if(RX1_Buffer[0] == 'A' && RX1_Buffer[1] == '4' && RX1_Buffer[2] == '1' && RX1_Buffer[3] == 'T'
+             -)
+ 173   6                  {
+ 174   7                    Identity = 0; }
+ 175   6                  else if(RX1_Buffer[0] == 'A' && RX1_Buffer[1] == '4' && RX1_Buffer[2] == '0' && RX1_Buffer[3] == 'T'
+             -)
+ 176   6                  {
+ 177   7                    Identity = 1; }
+ 178   6                  else if(RX1_Buffer[0] == 'A' && RX1_Buffer[1] == '5' && RX1_Buffer[2] == '1' && RX1_Buffer[3] == 'T'
+             -)
+ 179   6                  {
+ 180   7                    Reserve = 1;  }
+ 181   6                  else if(RX1_Buffer[0] == 'A' && RX1_Buffer[1] == '5' && RX1_Buffer[2] == '0' && RX1_Buffer[3] == 'T'
+             -)
+ 182   6                  {
+ 183   7                    Reserve = 0;  }                         
+ 184   6                }
+ 185   5                
+ 186   5                for(i=0; i<COM1.RX_Cnt; i++)  TX1_write2buff(RX1_Buffer[i]);  //收到的数据原样返回
+ 187   5              }
+ 188   4              COM1.RX_Cnt = 0;
+ 189   4            }
+ 190   3          }
+ 191   2        }
+ 192   1       }
+ 193          /***********************************************
+ 194          函数名称：Delay_ms
+ 195          功    能：STC15系列单片机1ms延时程序
+ 196          入口参数：ms:延时的毫秒数
+ 197          返 回 值：无  
+ 198          备    注：示波器实测：0.997ms，内部时钟：11.0592MHz           
+ 199          ************************************************/
+ 200          void Delay_ms(unsigned int ms)
+ 201          {
+ 202   1          unsigned int i;
+ 203   1          while( (ms--) != 0)
+ 204   1          {
+ 205   2            for(i = 0; i < 580; i++); 
+ 206   2          }             
+ 207   1      }
+ 208          
+ 209          /********************* Timer0中断函数************************/
+ 210          void timer0_int (void) interrupt TIMER0_VECTOR
+ 211          {
+ 212   1         if(Lock_count)
+ 213   1         {
+ 214   2          Lock_count--;
+ 215   2         }
+ 216   1         else
+ 217   1         {
+ 218   2          LOCK = 1;
+C51 COMPILER V9.54   MAIN                                                                  05/09/2018 14:34:07 PAGE 5   
+
+ 219   2          TR0 = 0;
+ 220   2         }      
+ 221   1      }
+ 222          /********************* Timer1中断函数************************/
+ 223          void timer1_int (void) interrupt TIMER1_VECTOR
+ 224          {
+ 225   1      
+ 226   1      }
+ 227          
+ 228          /********************* Timer2中断函数************************/
+ 229          void timer2_int (void) interrupt TIMER2_VECTOR
+ 230          {
+ 231   1      
+ 232   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    598    ----
+   CONSTANT SIZE    =     25    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      5      24
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

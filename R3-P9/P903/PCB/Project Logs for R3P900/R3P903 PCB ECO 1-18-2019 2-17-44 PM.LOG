@@ -1,0 +1,6 @@
+Change Physical Footprint: Designator=C1 Old Footprint=Cap-DIP-10.0 New Footprint=Cap-DIP-10.0
+Change Physical Footprint: Designator=C3 Old Footprint=CAP-DIP-3.5 New Footprint=CAP-DIP-3.5
+Change Physical Footprint: Designator=C4 Old Footprint=CAP-DIP-3.5 New Footprint=CAP-DIP-3.5
+Change Physical Footprint: Designator=K1 Old Footprint=JDQ-SRD-5DC New Footprint=JDQ-SRD-5DC
+Change Physical Footprint: Designator=K2 Old Footprint=JDQ-SRD-5DC New Footprint=JDQ-SRD-5DC
+Change Physical Footprint: Designator=参数调节 Old Footprint=HDR2X4_CEN New Footprint=HDR2X4_CEN

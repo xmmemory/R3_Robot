@@ -1,0 +1,27 @@
+Removed Pin From Net: NetName=IIC_SDA Pin=I2C通讯-2
+Removed Pin From Net: NetName=IIC_SCL Pin=I2C通讯-3
+Change Component Designator: OldDesignator=圈数记录 NewDesignator=圈数调节
+Added Component: Designator=R19(LC-0805_R)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_18361.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C17673"; VariantName = "[No Variations]"
+Added Component: Designator=R20(LC-0805_R)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_18361.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C17673"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=IIC_SCL Pin=R19-2
+Added Pin To Net: NetName=IIC_SDA Pin=R20-2
+Added Pin To Net: NetName=NetI2C通讯_2 Pin=I2C通讯-2
+Added Pin To Net: NetName=NetI2C通讯_2 Pin=R20-1
+Added Net: Name=NetI2C通讯_2
+Added Pin To Net: NetName=NetI2C通讯_3 Pin=I2C通讯-3
+Added Pin To Net: NetName=NetI2C通讯_3 Pin=R19-1
+Added Net: Name=NetI2C通讯_3
+Added Member To Class: ClassName=R3P900 Member=Component R19 4.7KΩ (4701) ±1%
+Added Member To Class: ClassName=R3P900 Member=Component R20 4.7KΩ (4701) ±1%

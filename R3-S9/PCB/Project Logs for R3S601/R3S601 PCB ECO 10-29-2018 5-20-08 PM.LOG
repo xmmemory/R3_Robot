@@ -1,0 +1,38 @@
+Removed Pin From Net: NetName=+5 Pin=R8-2
+Removed Pin From Net: NetName=NetP1_4 Pin=USB_SLAVE-1
+Removed Pin From Net: NetName=NetP1_3 Pin=USB_SLAVE-2
+Removed Pin From Net: NetName=NetP1_2 Pin=USB_SLAVE-3
+Removed Pin From Net: NetName=GND Pin=USB_SLAVE-5
+Removed Member From Class: ClassName=R3S601 Member=USB_SLAVE
+Change Component Designator: OldDesignator=C14 NewDesignator=C15
+Change Component Designator: OldDesignator=C15 NewDesignator=C16
+Change Component Designator: OldDesignator=C16 NewDesignator=C17
+Change Component Designator: OldDesignator=C17 NewDesignator=C18
+Change Component Designator: OldDesignator=C18 NewDesignator=C14
+Change Component Designator: OldDesignator=R5 NewDesignator=R6
+Change Component Designator: OldDesignator=R6 NewDesignator=R7
+Change Component Designator: OldDesignator=R7 NewDesignator=R8
+Change Component Designator: OldDesignator=R8 NewDesignator=R5
+Added Component: Designator=D4(LC-SMA(DO-214AC)_S1)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_15669.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "SMA(DO-214AC)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C14996"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+5 Pin=D4-1
+Change Net Name : Old Net Name=NetC14_1 New Net Name=NetC15_1
+Change Net Name : Old Net Name=NetC17_2 New Net Name=NetC18_2
+Change Net Name : Old Net Name=NetC18_1 New Net Name=NetC14_1
+Change Net Name : Old Net Name=NetR6_1 New Net Name=NetR7_1
+Added Pin To Net: NetName=NetD4_2 Pin=D4-2
+Added Pin To Net: NetName=NetD4_2 Pin=R5-2
+Added Net: Name=NetD4_2
+Added Member To Class: ClassName=R3S601 Member=Component C11 10uF
+Added Member To Class: ClassName=R3S601 Member=Component C16 100nF(104) 10% 50V
+Added Member To Class: ClassName=R3S601 Member=Component C18 22pF (220) 5% 50V
+Added Member To Class: ClassName=R3S601 Member=Component C19 100nF(104) 10% 50V
+Added Member To Class: ClassName=R3S601 Member=Component C20 10uF (106) 10% 25V
+Added Member To Class: ClassName=R3S601 Member=Component D4 SS210
+Added Member To Class: ClassName=R3S601 Member=Component R7 10KΩ (1002) ±1%
+Added Member To Class: ClassName=R3S601 Member=Component R9 10MΩ (1005) ±1%

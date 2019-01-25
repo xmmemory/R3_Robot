@@ -1,0 +1,6 @@
+Change Component Designator: OldDesignator=DC_IN NewDesignator=DC_IN1
+Added Component: Designator=DC_IN2(VH-2A - Circle Hole)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=DC_IN2-1
+Added Pin To Net: NetName=NetD5_1 Pin=DC_IN2-2
+Added Member To Class: ClassName=R3S602 Member=Component DC_IN2 Header 2

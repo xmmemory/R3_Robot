@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=+5 Pin=R19-2
+Removed Pin From Net: NetName=+5 Pin=R?-2
+Removed Pin From Net: NetName=+5 Pin=温度-1
+Removed Pin From Net: NetName=GND Pin=温度-3
+Removed Pin From Net: NetName=+5 Pin=温湿度-1
+Removed Pin From Net: NetName=GND Pin=温湿度-3
+Added Pin To Net: NetName=5V_GL Pin=R19-2
+Added Pin To Net: NetName=5V_GL Pin=R?-2
+Added Pin To Net: NetName=5V_GL Pin=温度-1
+Added Pin To Net: NetName=GND_GL Pin=温度-3
+Added Pin To Net: NetName=5V_GL Pin=温湿度-1
+Added Pin To Net: NetName=GND_GL Pin=温湿度-3
+Added Room: Name=R3S602

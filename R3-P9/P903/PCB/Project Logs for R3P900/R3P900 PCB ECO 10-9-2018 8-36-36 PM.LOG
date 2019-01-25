@@ -1,0 +1,15 @@
+Removed Pin From Net: NetName=+24_IN Pin=手动充电-1
+Added Component: Designator=C10(LC-0805_C)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_29074.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C28323"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=C10-1
+Added Pin To Net: NetName=+24_IN Pin=C10-2
+Added Pin To Net: NetName=+24_IN Pin=Q1-1
+Added Pin To Net: NetName=+24_IN Pin=R4-2
+Added Pin To Net: NetName=Battery Pin=手动充电-1
+Change Net Name : Old Net Name=+24_IN New Net Name=NetC10_2
+Added Member To Class: ClassName=R3P900 Member=Component C10 1uF (105) 10% 50V

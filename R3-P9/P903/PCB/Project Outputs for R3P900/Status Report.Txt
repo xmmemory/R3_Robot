@@ -1,0 +1,10 @@
+Output: Report Project Hierarchy
+Type  : ReportHierarchy
+From  : Variant [[No Variations]] of Project [R3P900.PrjPCB]
+   Generated File[R3P903.REP]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 12:52:57 PM On 1/13/2019

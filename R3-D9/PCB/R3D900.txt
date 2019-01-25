@@ -1,0 +1,12 @@
+Board Information Report
+Filename     : D:\Ray_Git\Ray\Robot\R3-D9\PCB\R3D900.PcbDoc
+Date         : 1/15/2019
+Time         : 4:51:05 PM
+Time Elapsed : 00:00:00
+
+Routing Information
+    Routing completion, 100.00%
+    Connections, 272
+    Connections routed, 272
+    Connections remaining, 0
+count : 4

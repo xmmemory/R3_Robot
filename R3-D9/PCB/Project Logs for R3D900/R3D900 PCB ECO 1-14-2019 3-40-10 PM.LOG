@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=VCC3.3M Pin=P2-1
+Removed Pin From Net: NetName=VCC3.3M Pin=P2-2
+Removed Pin From Net: NetName=BOOT1 Pin=R7-2
+Removed Member From Class: ClassName=R3D900 Member=P2
+Removed Member From Class: ClassName=R3D900 Member=R7

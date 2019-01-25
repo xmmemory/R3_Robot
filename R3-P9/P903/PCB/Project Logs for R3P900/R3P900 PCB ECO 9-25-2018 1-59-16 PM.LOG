@@ -1,0 +1,8 @@
+Change Component Designator: OldDesignator=U2 NewDesignator=U3
+Added Component: Designator=U2(XL4016E1)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=+24 Pin=U2-1
+Added Pin To Net: NetName=GND Pin=U2-2
+Added Pin To Net: NetName=+12 Pin=U2-3
+Added Pin To Net: NetName=GND Pin=U2-4
+Added Member To Class: ClassName=R3P900 Member=Component U3 LM2596

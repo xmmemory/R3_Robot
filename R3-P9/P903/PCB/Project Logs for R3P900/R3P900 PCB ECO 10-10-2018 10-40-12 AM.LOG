@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=In_Charge Pin=U4-9
+Removed Pin From Net: NetName=Charge Pin=U4-10
+Removed Pin From Net: NetName=U_RX Pin=U4-12
+Removed Pin From Net: NetName=U_TX Pin=U4-13
+Removed Pin From Net: NetName=Battery_IN Pin=U4-14
+Added Pin To Net: NetName=In_Charge Pin=U4-10
+Added Pin To Net: NetName=Charge Pin=U4-11
+Added Pin To Net: NetName=U_RX Pin=U4-13
+Added Pin To Net: NetName=U_TX Pin=U4-14
+Added Pin To Net: NetName=Battery_IN Pin=U4-15

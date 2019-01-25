@@ -1,0 +1,16 @@
+..\obj\tim5_int.o: ..\HARDWARE\TIM5_INT.c
+..\obj\tim5_int.o: ..\HARDWARE\TIM5_INT.h
+..\obj\tim5_int.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
+..\obj\tim5_int.o: ..\USER\stm32f10x.h
+..\obj\tim5_int.o: ..\CORE\core_cm3.h
+..\obj\tim5_int.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\tim5_int.o: ..\USER\system_stm32f10x.h
+..\obj\tim5_int.o: ..\USER\stm32f10x_conf.h
+..\obj\tim5_int.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
+..\obj\tim5_int.o: ..\USER\stm32f10x.h
+..\obj\tim5_int.o: ..\STM32F10x_FWLib\inc\stm32f10x_dbgmcu.h
+..\obj\tim5_int.o: ..\STM32F10x_FWLib\inc\stm32f10x_dma.h
+..\obj\tim5_int.o: ..\STM32F10x_FWLib\inc\stm32f10x_gpio.h
+..\obj\tim5_int.o: ..\STM32F10x_FWLib\inc\stm32f10x_rcc.h
+..\obj\tim5_int.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
+..\obj\tim5_int.o: ..\STM32F10x_FWLib\inc\misc.h

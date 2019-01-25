@@ -1,0 +1,2 @@
+Change Component Footprint: Designator=参数调节 Old Footprint=HDR2X4_CEN New Footprint=DIP8
+Added Member To Class: ClassName=R3P900 Member=Component UART通讯2 Header 3

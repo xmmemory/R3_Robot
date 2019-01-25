@@ -1,0 +1,32 @@
+Added Component: Designator=C11(CC6.56.5)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C13(CC6.56.5)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C17(LC-0805_C)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_50686.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C49678"; VariantName = "[No Variations]"
+Added Component: Designator=VR1(LC-SOT-223)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "供应商链接"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.szlcsc.com/product/details_6652.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "SOT-223"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "LC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SuppliersPartNumber"; Value = "C6186"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+5 Pin=C11-1
+Added Pin To Net: NetName=GND Pin=C11-2
+Added Pin To Net: NetName=+3.3 Pin=C13-1
+Added Pin To Net: NetName=GND Pin=C13-2
+Added Pin To Net: NetName=GND Pin=C17-1
+Added Pin To Net: NetName=+3.3 Pin=C17-2
+Added Pin To Net: NetName=GND Pin=VR1-1
+Added Pin To Net: NetName=+3.3 Pin=VR1-2
+Added Pin To Net: NetName=+3.3 Pin=VR1-2
+Added Pin To Net: NetName=+5 Pin=VR1-3
+Added Member To Class: ClassName=R3S601 Member=Component C11 10uF
+Added Member To Class: ClassName=R3S601 Member=Component C13 22uF
+Added Member To Class: ClassName=R3S601 Member=Component C17 100nF(104) 10% 50V
+Added Member To Class: ClassName=R3S601 Member=Component VR1 AMS1117-3.3

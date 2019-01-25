@@ -1,0 +1,4 @@
+Change Component Footprint: Designator=C5 Old Footprint=LC-0805_C New Footprint=CAP-DIP-3.5
+Change Component Comment : Designator=C5 Old Comment=1uF (105) 10% 50V New Comment=Cap
+Change component parameters: Designator = "C5"; Footprint = "CAP-DIP-3.5"; UniqueID = "\GRURYFHU"
+Change component parameters. Clean all parameters for all variants
