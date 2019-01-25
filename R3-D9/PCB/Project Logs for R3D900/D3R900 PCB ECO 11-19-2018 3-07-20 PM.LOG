@@ -1,6 +1,0 @@
-Removed Pin From Net: NetName=GND Pin=FDL2-1
-Removed Pin From Net: NetName=+5 Pin=FDL2-3
-Removed Pin From Net: NetName=GND Pin=FDL3-1
-Removed Pin From Net: NetName=+5 Pin=FDL3-3
-Removed Member From Class: ClassName=D3R900 Member=FDL2
-Removed Member From Class: ClassName=D3R900 Member=FDL3
