@@ -38,57 +38,6 @@ PrefsVaultGUID=
 PrefsRevisionGUID=
 
 [Document1]
-DocumentPath=..\..\PCB\D3R900.SchDoc
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=AVCYVRUU
-
-[Document2]
-DocumentPath=..\..\PCB\R3D903.PcbDoc
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=QOREVKGE
-
-[Document3]
-DocumentPath=..\..\PCB\D3R900.Annotation
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document4]
 DocumentPath=..\..\..\..\..\DXP_Module\Lib\STM32F4开发板及模块元器件封装库\Explorer STM32F407封装库.IntLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -105,7 +54,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document5]
+[Document2]
 DocumentPath=..\..\..\..\..\DXP_Module\Lib\stcmcu_altium_lib.IntLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -122,7 +71,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document6]
+[Document3]
 DocumentPath=..\..\..\..\..\DXP_Module\Lib\Miscellaneous Devices LC.IntLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -139,7 +88,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document7]
+[Document4]
 DocumentPath=..\..\..\..\..\DXP_Module\Lib\STM32F4开发板及模块元器件封装库\ENC28J60网络模块封装库.IntLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -156,7 +105,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document8]
+[Document5]
 DocumentPath=R3D910.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -173,65 +122,22 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=NTEHWIHM
 
-[GeneratedDocument1]
-DocumentPath=..\..\PCB\Project Outputs for R3D900\R3D900.EXTREP
+[Document6]
+DocumentPath=D3R910.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
 DItemRevisionGUID=
-
-[GeneratedDocument2]
-DocumentPath=..\..\PCB\Project Outputs for R3D900\R3D900.GBL
-DItemRevisionGUID=
-
-[GeneratedDocument3]
-DocumentPath=..\..\PCB\Project Outputs for R3D900\R3D900.GBS
-DItemRevisionGUID=
-
-[GeneratedDocument4]
-DocumentPath=..\..\PCB\Project Outputs for R3D900\R3D900.GD1
-DItemRevisionGUID=
-
-[GeneratedDocument5]
-DocumentPath=..\..\PCB\Project Outputs for R3D900\R3D900.GKO
-DItemRevisionGUID=
-
-[GeneratedDocument6]
-DocumentPath=..\..\PCB\Project Outputs for R3D900\R3D900.GM13
-DItemRevisionGUID=
-
-[GeneratedDocument7]
-DocumentPath=..\..\PCB\Project Outputs for R3D900\R3D900.GM15
-DItemRevisionGUID=
-
-[GeneratedDocument8]
-DocumentPath=..\..\PCB\Project Outputs for R3D900\R3D900.GPB
-DItemRevisionGUID=
-
-[GeneratedDocument9]
-DocumentPath=..\..\PCB\Project Outputs for R3D900\R3D900.GPT
-DItemRevisionGUID=
-
-[GeneratedDocument10]
-DocumentPath=..\..\PCB\Project Outputs for R3D900\R3D900.GTL
-DItemRevisionGUID=
-
-[GeneratedDocument11]
-DocumentPath=..\..\PCB\Project Outputs for R3D900\R3D900.GTO
-DItemRevisionGUID=
-
-[GeneratedDocument12]
-DocumentPath=..\..\PCB\Project Outputs for R3D900\R3D900.GTP
-DItemRevisionGUID=
-
-[GeneratedDocument13]
-DocumentPath=..\..\PCB\Project Outputs for R3D900\R3D900.GTS
-DItemRevisionGUID=
-
-[GeneratedDocument14]
-DocumentPath=..\..\PCB\Project Outputs for R3D900\R3D900.REP
-DItemRevisionGUID=
-
-[GeneratedDocument15]
-DocumentPath=..\..\PCB\Project Outputs for R3D900\R3D900.RUL
-DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=AVCYVRUU
 
 [Configuration1]
 Name=Sources
